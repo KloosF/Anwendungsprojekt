@@ -1,6 +1,6 @@
 package View;
 
-import helper.classes.RealChartClass;
+import helper.classes.ChartClass;
 import helper.classes.VerifyText;
 import integer.distributions.PoissonDistributionLogic;
 
@@ -24,13 +24,13 @@ public class PoissonComposite extends Composite{
 	Text poissonMean;
 	Text epsilon;
 	Text maxIterations;
-	RealChartClass chart;
+	ChartClass chart;
 	
 	String firstLabel = "Poisson Mean";
 	String secondLabel = "Convergence Criterion";
 	String thirdLabel = "Max. Number of Iterations";
 	
-	public PoissonComposite(Composite parent, int style, RealChartClass chart) {
+	public PoissonComposite(Composite parent, int style, ChartClass chart) {
 		super(parent, style);
 		this.chart = chart;
 		createComponents();
@@ -106,7 +106,7 @@ public class PoissonComposite extends Composite{
 							Integer.parseInt(maxIterations.getText()));
 					double[] ySeries = poi.createYSeries();
 					double[] xSeries = poi.createXSeries();
-					chart.fillChart(ySeries, xSeries);
+					chart.fillChart(ySeries, xSeries, false);
 				}
 			}
 		});

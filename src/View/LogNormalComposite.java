@@ -1,6 +1,6 @@
 package View;
 
-import helper.classes.RealChartClass;
+import helper.classes.ChartClass;
 import helper.classes.VerifyText;
 
 import org.eclipse.swt.SWT;
@@ -24,13 +24,13 @@ public class LogNormalComposite extends Composite{
 	Text scale;
 	Text shape;
 	Text inverseCumAccuracy;
-	RealChartClass chart;
+	ChartClass chart;
 	
 	String firstLabel = "Scale";
 	String secondLabel = "Shape";
 	String thirdLabel = "Inverse cumulative probability accuracy";
 	
-	public LogNormalComposite(Composite parent, int style, RealChartClass chart) {
+	public LogNormalComposite(Composite parent, int style, ChartClass chart) {
 		super(parent, style);
 		this.chart = chart;
 		createComponents();
@@ -105,7 +105,7 @@ public class LogNormalComposite extends Composite{
 							Double.parseDouble(inverseCumAccuracy.getText()));
 					double[] ySeries = norm.createYSeries();
 					double[] xSeries = norm.createXSeries();
-					chart.fillChart(ySeries, xSeries);
+					chart.fillChart(ySeries, xSeries, true);
 				}
 			}
 		});

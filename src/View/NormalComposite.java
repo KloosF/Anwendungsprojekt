@@ -1,6 +1,6 @@
 package View;
 
-import helper.classes.RealChartClass;
+import helper.classes.ChartClass;
 import helper.classes.VerifyText;
 
 import org.eclipse.swt.SWT;
@@ -23,13 +23,13 @@ public class NormalComposite extends Composite{
 	Text mean;
 	Text sd;
 	Text inverseCumAccuracy;
-	RealChartClass chart;
+	ChartClass chart;
 	
 	String firstLabel = "Normal Mean";
 	String secondLabel = "Standard Deviation";
 	String thirdLabel = "Inverse cumulative probability accuracy";
 	
-	public NormalComposite(Composite parent, int style, RealChartClass chart) {
+	public NormalComposite(Composite parent, int style, ChartClass chart) {
 		super(parent, style);
 		this.chart = chart;
 		createComponents();
@@ -104,7 +104,7 @@ public class NormalComposite extends Composite{
 							Double.parseDouble(inverseCumAccuracy.getText()));
 					double[] ySeries = norm.createYSeries();
 					double[] xSeries = norm.createXSeries();
-					chart.fillChart(ySeries, xSeries);
+					chart.fillChart(ySeries, xSeries, true);
 				}
 			}
 		});

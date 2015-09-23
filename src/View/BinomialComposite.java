@@ -1,5 +1,5 @@
 package View;
-import helper.classes.RealChartClass;
+import helper.classes.ChartClass;
 import helper.classes.VerifyText;
 import integer.distributions.BinomialDistributionLogic;
 
@@ -17,9 +17,9 @@ public class BinomialComposite extends Composite{
 
 	Text tries;
 	Text probability;
-	RealChartClass chart;
+	ChartClass chart;
 	
-	public BinomialComposite(Composite parent, int style, RealChartClass chart) {
+	public BinomialComposite(Composite parent, int style, ChartClass chart) {
 		super(parent, style);
 		this.chart = chart;
 		createComponents();
@@ -77,7 +77,7 @@ public class BinomialComposite extends Composite{
 							Double.parseDouble(probability.getText()));
 					double[] ySeries = bin.createYSeries();
 					double[] xSeries = bin.createXSeries();
-					chart.fillChart(ySeries, xSeries);
+					chart.fillChart(ySeries, xSeries, false);
 				}
 			}
 		});

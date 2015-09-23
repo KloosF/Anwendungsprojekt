@@ -2,7 +2,7 @@ package View;
 
 
 import helper.classes.DistributionSelect;
-import helper.classes.RealChartClass;
+import helper.classes.ChartClass;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -23,7 +23,7 @@ public class MainWindow {
 	static Combo fkt;
 	static Combo constructorCombo;
 	static Group dynParameters;
-	public static RealChartClass chart;
+	public static ChartClass chart;
 	static MainWindow window;
 	DistributionSelect dist = new DistributionSelect();
 	
@@ -65,7 +65,7 @@ public class MainWindow {
 		fkt = new Combo(shell, SWT.READ_ONLY);
 		fkt.setLayoutData(data);
 		
-		chart = new RealChartClass(shell, SWT.NONE);
+		chart = new ChartClass(shell, SWT.NONE);
 		
 		shell.open();
 		while (!shell.isDisposed()) {

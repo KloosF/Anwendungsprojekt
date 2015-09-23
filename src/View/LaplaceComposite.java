@@ -1,6 +1,6 @@
 package View;
 
-import helper.classes.RealChartClass;
+import helper.classes.ChartClass;
 import helper.classes.VerifyText;
 
 import org.eclipse.swt.SWT;
@@ -22,12 +22,12 @@ public class LaplaceComposite extends Composite{
 	
 	Text mu;
 	Text beta;
-	RealChartClass chart;
+	ChartClass chart;
 	
 	String firstLabel = "Location Parameter";
 	String secondLabel = "Scale Parameter (must be positive)";
 	
-	public LaplaceComposite(Composite parent, int style, RealChartClass chart) {
+	public LaplaceComposite(Composite parent, int style, ChartClass chart) {
 		super(parent, style);
 		this.chart = chart;
 		createComponents();
@@ -84,7 +84,7 @@ public class LaplaceComposite extends Composite{
 							Double.parseDouble(beta.getText()));
 					double[] ySeries = laplace.createYSeries();
 					double[] xSeries = laplace.createXSeries();
-					chart.fillChart(ySeries, xSeries);
+					chart.fillChart(ySeries, xSeries, true);
 				}
 			}
 		});

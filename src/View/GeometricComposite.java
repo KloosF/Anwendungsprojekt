@@ -1,6 +1,6 @@
 package View;
 
-import helper.classes.RealChartClass;
+import helper.classes.ChartClass;
 import helper.classes.VerifyText;
 import integer.distributions.BinomialDistributionLogic;
 import integer.distributions.GeometricDistributionLogic;
@@ -21,9 +21,9 @@ public class GeometricComposite extends Composite{
 	
 	Text tries;
 	Text probability;
-	RealChartClass chart;
+	ChartClass chart;
 	
-	public GeometricComposite(Composite parent, int style, RealChartClass chart) {
+	public GeometricComposite(Composite parent, int style, ChartClass chart) {
 		super(parent, style);
 		this.chart = chart;
 		createComponents();
@@ -117,7 +117,7 @@ public class GeometricComposite extends Composite{
 							Double.parseDouble(probability.getText()));
 					double[] ySeries = geo.createYSeries(Integer.parseInt(tries.getText()));
 					double[] xSeries = geo.createXSeries(Integer.parseInt(tries.getText()));
-					chart.fillChart(ySeries, xSeries);
+					chart.fillChart(ySeries, xSeries, false);
 				}
 			}
 		});

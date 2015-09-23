@@ -1,6 +1,6 @@
 package View;
 
-import helper.classes.RealChartClass;
+import helper.classes.ChartClass;
 import helper.classes.VerifyText;
 
 import org.eclipse.swt.SWT;
@@ -23,12 +23,12 @@ public class ExponentialComposite extends Composite{
 	
 	Text mean;
 	Text inverseCumAccuracy;
-	RealChartClass chart;
+	ChartClass chart;
 	
 	String firstLabel = "Mean";
 	String thirdLabel = "Inverse cumulative probability accuracy";
 	
-	public ExponentialComposite(Composite parent, int style, RealChartClass chart) {
+	public ExponentialComposite(Composite parent, int style, ChartClass chart) {
 		super(parent, style);
 		this.chart = chart;
 		createComponents();
@@ -86,7 +86,7 @@ public class ExponentialComposite extends Composite{
 							Double.parseDouble(inverseCumAccuracy.getText()));
 					double[] ySeries = exp.createYSeries();
 					double[] xSeries = exp.createXSeries();
-					chart.fillChart(ySeries, xSeries);
+					chart.fillChart(ySeries, xSeries, true);
 				}
 			}
 		});
