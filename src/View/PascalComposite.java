@@ -47,6 +47,7 @@ public class PascalComposite extends Composite{
 		data.horizontalSpan = 2;
 		
 		numberOfSuccess = new Text(this, SWT.BORDER);
+		numberOfSuccess.setText("10");
 		numberOfSuccess.setLayoutData(data);
 		numberOfSuccess.addVerifyListener(new VerifyListener() {
 			
@@ -63,6 +64,7 @@ public class PascalComposite extends Composite{
 		data.horizontalSpan = 2;
 		
 		probability = new Text(this, SWT.BORDER);
+		probability.setText("0.2");
 		probability.setLayoutData(data);
 		probability.addVerifyListener(new VerifyListener() {
 			

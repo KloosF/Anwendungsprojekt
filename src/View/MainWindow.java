@@ -100,8 +100,7 @@ public class MainWindow {
 					"BinomialDistribution",
 					"GeometricDistribution",
 					"PascalDistribution",
-					"PoissonDistribution",
-					"UniformIntegerDistribution", });
+					"PoissonDistribution",});
 			
 			//erstes Element auswählen
 			fkt.select(0);

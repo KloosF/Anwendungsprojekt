@@ -64,6 +64,7 @@ public class GeometricComposite extends Composite{
 		probabilityLabel.setText("Probability");
 		
 		probability = new Text(this, SWT.BORDER);
+		probability.setText("0.5");
 		probability.setLayoutData(data);
 		probability.addVerifyListener(new VerifyListener() {
 			

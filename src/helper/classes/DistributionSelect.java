@@ -20,9 +20,6 @@ public class DistributionSelect {
 		else if (selectionIndex == 3) {
 			new PoissonComposite(group, SWT.NONE, MainWindow.chart);
 		}
-		else if (selectionIndex == 4) {
-			new UniformIntegerComposite(group, SWT.NONE, MainWindow.chart);
-		}
 	}
 	
 	private static void selectRealDistributionComposite(int selectionIndex, Group group){

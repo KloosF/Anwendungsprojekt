@@ -42,6 +42,7 @@ public class BinomialComposite extends Composite{
 		data.horizontalSpan = 2;
 		
 		tries = new Text(this, SWT.BORDER);
+		tries.setText("20");
 		tries.setLayoutData(data);
 		tries.addVerifyListener(new VerifyListener() {
 			
@@ -56,6 +57,7 @@ public class BinomialComposite extends Composite{
 		probabilityLabel.setText("Probability");
 		
 		probability = new Text(this, SWT.BORDER);
+		probability.setText("0.5");
 		probability.setLayoutData(data);
 		probability.addVerifyListener(new VerifyListener() {
 			

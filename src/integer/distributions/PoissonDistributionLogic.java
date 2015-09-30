@@ -4,20 +4,19 @@ import org.apache.commons.math3.distribution.PoissonDistribution;
 
 public class PoissonDistributionLogic {
 	public PoissonDistribution poi;
-	private int iterations;
 	
-	public PoissonDistributionLogic(double p, double epsilon, int maxIterations){
-		poi = new PoissonDistribution(p, epsilon, maxIterations);
-		iterations = maxIterations;
+	public PoissonDistributionLogic(double p){
+		poi = new PoissonDistribution(p);
 	}
 	
 	public double calculate(int x){
 		return poi.probability(x);
 	}
 	
+	//TODO
 	public double[] createYSeries(){
-		double[] ySeries = new double[iterations + 1];
-		for (int i = 0; i <= iterations; i++) {
+		double[] ySeries = new double[20 + 1];
+		for (int i = 0; i <= 20; i++) {
 			ySeries[i] = poi.probability(i);
 			System.out.println(poi.probability(i));
 		}

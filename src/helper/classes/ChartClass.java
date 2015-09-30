@@ -63,6 +63,7 @@ public class ChartClass extends Composite{
 			
 			chart.getLegend().setVisible(false);
 			chart.redraw();
+			MinMaxHelpers.maxRange(chart);
 		}
 		
 	}
