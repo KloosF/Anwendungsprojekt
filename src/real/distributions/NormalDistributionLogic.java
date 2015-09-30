@@ -4,11 +4,9 @@ import org.apache.commons.math3.distribution.NormalDistribution;
 
 public class NormalDistributionLogic {
 	public NormalDistribution norm;
-	private double inv;
 	
 	public NormalDistributionLogic(double mean, double sd, double inverseCumAccuracy){
 		norm = new NormalDistribution(mean, sd, inverseCumAccuracy);
-		inv = inverseCumAccuracy;
 	}
 	
 	public double calculate(int x){
@@ -16,9 +14,9 @@ public class NormalDistributionLogic {
 	}
 	
 	public double[] createYSeries(){
-		double[] ySeries = new double[22];
-		for (double i = 0; i <= 10; i = i+0.5) {
-			ySeries[(int)i*2] = norm.density(i-5);
+		double[] ySeries = new double[21];
+		for (int i = 0; i <= 20; i++) {
+			ySeries[i] = norm.density(i);
 			//TODO: delete everywhere
 			System.out.println(norm.density(i));
 		}

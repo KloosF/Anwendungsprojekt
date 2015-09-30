@@ -13,6 +13,7 @@ public class MinMaxHelpers {
 		
 		if (max == 0) {
 			//TODO was passiert wenn keine Werte übergeben
+			chart.getSeriesSet().getSeries()[0].setYSeries(new double[0]);
 			return;
 		}
 		else if (max == 1 || max == 2) {
@@ -26,10 +27,8 @@ public class MinMaxHelpers {
 			System.out.println("y coordinate: " + chart.getSeriesSet().getSeries()[0].getPixelCoordinates(i).y);
 			while(!(minMaxHelp < -1 || minMaxHelp > 1) && i < chart.getSeriesSet().getSeries()[0].getYSeries().length && MinMaxHelpers.pointCloseToXAxis(chart, chart.getSeriesSet().getSeries()[0].getPixelCoordinates(i).y))
 			{
-				minMaxHelp = (chart.getSeriesSet().getSeries()[0].getPixelCoordinates(i).y - 
-						chart.getSeriesSet().getSeries()[0].getPixelCoordinates(i-1).y) + 
-						(chart.getSeriesSet().getSeries()[0].getPixelCoordinates(i-1).y - 
-								chart.getSeriesSet().getSeries()[0].getPixelCoordinates(i-2).y);
+				minMaxHelp = compareLastThreeYCoordinates(chart, i);
+				
 				if (minMaxHelp == 0) {
 					min = i;
 				}
@@ -52,10 +51,8 @@ public class MinMaxHelpers {
 					minMaxHelp = 0;
 					while(!(minMaxHelp < -1 || minMaxHelp > 1) && j>min && MinMaxHelpers.pointCloseToXAxis(chart, chart.getSeriesSet().getSeries()[0].getPixelCoordinates(j).y))
 					{
-						minMaxHelp = (chart.getSeriesSet().getSeries()[0].getPixelCoordinates(j).y - 
-								chart.getSeriesSet().getSeries()[0].getPixelCoordinates(j+1).y) + 
-								(chart.getSeriesSet().getSeries()[0].getPixelCoordinates(j+1).y - 
-										chart.getSeriesSet().getSeries()[0].getPixelCoordinates(j+2).y);
+						minMaxHelp = compareNextThreeYCoordinates(chart, j);
+						
 						if (minMaxHelp == 0) {
 							max = j;
 						}
@@ -80,5 +77,23 @@ public class MinMaxHelpers {
 		{
 			return false;
 		}
+	}
+	
+	private static int compareLastThreeYCoordinates(Chart chart, int i)
+	{
+		int result = (chart.getSeriesSet().getSeries()[0].getPixelCoordinates(i).y - 
+				chart.getSeriesSet().getSeries()[0].getPixelCoordinates(i-1).y) + 
+				(chart.getSeriesSet().getSeries()[0].getPixelCoordinates(i-1).y - 
+						chart.getSeriesSet().getSeries()[0].getPixelCoordinates(i-2).y);
+		return result;
+	}
+	
+	private static int compareNextThreeYCoordinates(Chart chart, int i)
+	{
+		int result = (chart.getSeriesSet().getSeries()[0].getPixelCoordinates(i).y - 
+				chart.getSeriesSet().getSeries()[0].getPixelCoordinates(i+1).y) + 
+				(chart.getSeriesSet().getSeries()[0].getPixelCoordinates(i+1).y - 
+						chart.getSeriesSet().getSeries()[0].getPixelCoordinates(i+2).y);
+		return result;
 	}
 }

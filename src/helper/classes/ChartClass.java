@@ -10,6 +10,7 @@ import org.swtchart.IAxisSet;
 import org.swtchart.ILineSeries;
 import org.swtchart.ISeries;
 import org.swtchart.ISeriesSet;
+import org.swtchart.Range;
 import org.swtchart.ISeries.SeriesType;
 import org.swtchart.internal.series.SeriesSet;
 
@@ -63,7 +64,7 @@ public class ChartClass extends Composite{
 			
 			chart.getLegend().setVisible(false);
 			chart.redraw();
-			MinMaxHelpers.maxRange(chart);
+			//MinMaxHelpers.maxRange(chart);
 		}
 		
 	}
