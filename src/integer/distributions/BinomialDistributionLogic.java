@@ -2,7 +2,7 @@ package integer.distributions;
 
 import org.apache.commons.math3.distribution.*;
 
-public class BinomialDistributionLogic {
+public class BinomialDistributionLogic extends IntegerLogic{
 
 	public BinomialDistribution bin;
 	
@@ -23,10 +23,10 @@ public class BinomialDistributionLogic {
 		return ySeries;
 	}
 	
-	public double[] createXSeries(){
-		double[] xSeries = new double[bin.getNumberOfTrials()*2+1];
-		for (int i = 0; i <= bin.getNumberOfTrials()*2; i++) {
-			xSeries[i] = i/2;
+	public int[] createXSeries(){
+		int[] xSeries = new int[bin.getNumberOfTrials()];
+		for (int i = 0; i <= bin.getNumberOfTrials(); i++) {
+			xSeries[i] = i;
 			//TODO: delete everywhere
 		}
 		return xSeries;

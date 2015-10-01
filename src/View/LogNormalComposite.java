@@ -105,7 +105,7 @@ public class LogNormalComposite extends Composite{
 							Double.parseDouble(inverseCumAccuracy.getText()));
 					double[] ySeries = norm.createYSeries();
 					double[] xSeries = norm.createXSeries();
-					chart.fillChart(ySeries, xSeries, true);
+					chart.fillChartReal(ySeries, xSeries);
 				}
 			}
 		});

@@ -78,8 +78,8 @@ public class BinomialComposite extends Composite{
 							Integer.parseInt(tries.getText()), 
 							Double.parseDouble(probability.getText()));
 					double[] ySeries = bin.createYSeries();
-					double[] xSeries = bin.createXSeries();
-					chart.fillChart(ySeries, xSeries, false);
+					int[] xSeries = bin.createXSeries();
+					chart.fillChartInteger(ySeries, xSeries);
 				}
 			}
 		});

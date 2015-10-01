@@ -117,8 +117,8 @@ public class GeometricComposite extends Composite{
 					GeometricDistributionLogic geo = new GeometricDistributionLogic(
 							Double.parseDouble(probability.getText()));
 					double[] ySeries = geo.createYSeries(Integer.parseInt(tries.getText()));
-					double[] xSeries = geo.createXSeries(Integer.parseInt(tries.getText()));
-					chart.fillChart(ySeries, xSeries, false);
+					int[] xSeries = geo.createXSeries(Integer.parseInt(tries.getText()));
+					chart.fillChartInteger(ySeries, xSeries);
 				}
 			}
 		});

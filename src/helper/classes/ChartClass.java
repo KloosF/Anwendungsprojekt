@@ -40,21 +40,8 @@ public class ChartClass extends Composite{
 		chart.setLayoutData(data);
 	}
 	
-	public void fillChart(double[] ySeries, double[] xSeries, boolean isReal){
-		
-		if (isReal) {
-			ISeriesSet seriesSet = chart.getSeriesSet();
-			ISeries series = seriesSet.createSeries(SeriesType.LINE, "values");
-
-			series.setYSeries(ySeries);
-			
-			chart.getAxisSet().adjustRange();
-			
-			chart.getLegend().setVisible(false);
-			chart.redraw();
-		}
-		else
-		{
+	public void fillChartInteger(double[] ySeries, int[] xSeries){
+	
 			ISeriesSet seriesSet = chart.getSeriesSet();
 			ISeries series = seriesSet.createSeries(SeriesType.BAR, "values");
 
@@ -64,8 +51,20 @@ public class ChartClass extends Composite{
 			
 			chart.getLegend().setVisible(false);
 			chart.redraw();
-			//MinMaxHelpers.maxRange(chart);
-		}
-		
+			//MinMaxHelpers.maxRange(chart);	
 	}
+	
+	public void fillChartReal(double[] ySeries, double[] xSeries){
+		
+		ISeriesSet seriesSet = chart.getSeriesSet();
+		ISeries series = seriesSet.createSeries(SeriesType.LINE, "values");
+
+		series.setYSeries(ySeries);
+		
+		chart.getAxisSet().adjustRange();
+		
+		chart.getLegend().setVisible(false);
+		chart.redraw();
+		//MinMaxHelpers.maxRange(chart);	
+}
 }

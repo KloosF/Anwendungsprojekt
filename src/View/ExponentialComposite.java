@@ -86,7 +86,7 @@ public class ExponentialComposite extends Composite{
 							Double.parseDouble(inverseCumAccuracy.getText()));
 					double[] ySeries = exp.createYSeries();
 					double[] xSeries = exp.createXSeries();
-					chart.fillChart(ySeries, xSeries, true);
+					chart.fillChartReal(ySeries, xSeries);
 				}
 			}
 		});

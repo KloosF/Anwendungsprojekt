@@ -84,7 +84,7 @@ public class LaplaceComposite extends Composite{
 							Double.parseDouble(beta.getText()));
 					double[] ySeries = laplace.createYSeries();
 					double[] xSeries = laplace.createXSeries();
-					chart.fillChart(ySeries, xSeries, true);
+					chart.fillChartReal(ySeries, xSeries);
 				}
 			}
 		});

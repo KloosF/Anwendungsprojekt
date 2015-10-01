@@ -105,7 +105,7 @@ public class CauchyComposite extends Composite{
 							Double.parseDouble(inverseCumAccuracy.getText()));
 					double[] ySeries = cauchy.createYSeries();
 					double[] xSeries = cauchy.createXSeries();
-					chart.fillChart(ySeries, xSeries, true);
+					chart.fillChartReal(ySeries, xSeries);
 				}
 			}
 		});

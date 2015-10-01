@@ -2,7 +2,7 @@ package integer.distributions;
 
 import org.apache.commons.math3.distribution.PoissonDistribution;
 
-public class PoissonDistributionLogic {
+public class PoissonDistributionLogic extends IntegerLogic{
 	public PoissonDistribution poi;
 	
 	public PoissonDistributionLogic(double p){
@@ -23,8 +23,8 @@ public class PoissonDistributionLogic {
 		return ySeries;
 	}
 	
-	public double[] createXSeries(){
-		double[] xSeries = new double[22];
+	public int[] createXSeries(){
+		int[] xSeries = new int[22];
 		for (int i = 0; i <= 10; i++) {
 			xSeries[i] = i/2;
 			//TODO: delete everywhere

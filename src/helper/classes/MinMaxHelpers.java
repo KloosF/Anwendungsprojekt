@@ -1,5 +1,7 @@
 package helper.classes;
 
+import integer.distributions.IntegerLogic;
+
 import org.swtchart.Chart;
 import org.swtchart.Range;
 
@@ -95,5 +97,75 @@ public class MinMaxHelpers {
 				(chart.getSeriesSet().getSeries()[0].getPixelCoordinates(i+1).y - 
 						chart.getSeriesSet().getSeries()[0].getPixelCoordinates(i+2).y);
 		return result;
+	}
+	
+	private static double compareLastThreeValues(IntegerLogic logic, int i)
+	{
+		double result = (logic.calculate(i) - logic.calculate(i-1)) + (logic.calculate(i-1) - logic.calculate(i-2));
+		return result;
+	}
+	
+	private static double compareNextThreeValues(IntegerLogic logic, int i)
+	{
+		double result = (logic.calculate(i) - logic.calculate(i+1)) + (logic.calculate(i+1) - logic.calculate(i+2));
+		return result;
+	}
+	
+	public static void calculateIntegerMaxX(int[] xSeries, IntegerLogic logic, int start, ChartClass chart)
+	{
+		int xHochpunkt = start;
+		int counter = start;
+		int anfangX = xSeries[start];
+		
+		//testen ob genügend Zahlen im Array
+		if (xSeries.length < 2) {
+			return;
+		}
+		//testen ob Verteilung gleich abfällt
+		if (logic.calculate(xSeries[counter])-logic.calculate(xSeries[counter+1]) <= 0) {
+			
+			//Höhepunkt der Verteilung suchen
+			while(logic.calculate(xSeries[counter])-logic.calculate(xSeries[counter+1]) <= 0)
+			{
+				counter++;
+				if ((counter+1) < xSeries.length) {
+					
+					//ursprüngliche Länge *2 um Suche zu beschleunigen
+					int[] tmp = new int[2*xSeries.length];
+					for (int i = 0; i < tmp.length; i++) {
+						tmp[i] = i + xSeries[counter] + 1;
+					}
+					xSeries = new int[tmp.length];
+					xSeries = tmp;
+					counter = 0;
+				}
+			}
+			//Hochpunkt gefunden, ab hier nur noch bergab
+			xHochpunkt = xSeries[counter];
+		}
+		
+		//überprüfen ob array mit xWerten "zu klein"
+		if (counter == xSeries.length-1 || counter == xSeries.length-2) {
+			int[] tmp = new int[2*xSeries.length];
+			for (int i = 0; i < tmp.length; i++) {
+				tmp[i] = i + xSeries[counter] + 1;
+			}
+			xSeries = new int[tmp.length];
+			xSeries = tmp;
+			counter = 0;
+		}
+		
+		//TODO: evtl Möglichkeit bei der gesammte Chart gezeichnet wird, nicht nur ab Höhepunkt
+		
+		double[] ySeries = new double[xSeries.length];
+		for (int i = 0; i < ySeries.length; i++) {
+			ySeries[i] = logic.calculate(xSeries[i]);
+		}
+		
+		//chart einmal zeichnen um Vergleiche anstellen zu können
+		chart.fillChartInteger(ySeries, xSeries);
+		
+		//Maximum finden
+
 	}
 }

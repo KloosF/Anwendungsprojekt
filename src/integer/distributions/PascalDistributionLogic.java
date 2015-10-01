@@ -2,7 +2,7 @@ package integer.distributions;
 
 import org.apache.commons.math3.distribution.PascalDistribution;
 
-public class PascalDistributionLogic {
+public class PascalDistributionLogic extends IntegerLogic{
 	public PascalDistribution pas;
 	private int r;
 	
@@ -24,8 +24,8 @@ public class PascalDistributionLogic {
 		return ySeries;
 	}
 	
-	public double[] createXSeries(){
-		double[] xSeries = new double[r + 1];
+	public int[] createXSeries(){
+		int[] xSeries = new int[r + 1];
 		for (int i = 0; i <= r; i++) {
 			xSeries[i] = i;
 			//TODO: delete everywhere

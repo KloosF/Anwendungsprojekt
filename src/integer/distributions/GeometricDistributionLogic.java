@@ -2,7 +2,7 @@ package integer.distributions;
 
 import org.apache.commons.math3.distribution.GeometricDistribution;
 
-public class GeometricDistributionLogic {
+public class GeometricDistributionLogic extends IntegerLogic{
 
 	public GeometricDistribution geo;
 	
@@ -23,12 +23,18 @@ public class GeometricDistributionLogic {
 		return ySeries;
 	}
 	
-	public double[] createXSeries(int n){
-		double[] xSeries = new double[n+1];
+	public int[] createXSeries(int n){
+		int[] xSeries = new int[n+1];
 		for (int i = 0; i <= n; i++) {
 			xSeries[i] = i;
 			//TODO: delete everywhere
 		}
 		return xSeries;
+	}
+
+	@Override
+	public double[] createYSeries() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

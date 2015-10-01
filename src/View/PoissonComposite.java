@@ -62,8 +62,8 @@ public class PoissonComposite extends Composite{
 				if (!poissonMean.getText().equals("")) {
 					PoissonDistributionLogic poi = new PoissonDistributionLogic(Double.parseDouble(poissonMean.getText()));
 					double[] ySeries = poi.createYSeries();
-					double[] xSeries = poi.createXSeries();
-					chart.fillChart(ySeries, xSeries, false);
+					int[] xSeries = poi.createXSeries();
+					chart.fillChartInteger(ySeries, xSeries);
 				}
 			}
 		});

@@ -86,7 +86,7 @@ public class ChiSquaredComposite extends Composite{
 							Double.parseDouble(inverseCumAccuracy.getText()));
 					double[] ySeries = chi.createYSeries();
 					double[] xSeries = chi.createXSeries();
-					chart.fillChart(ySeries, xSeries, true);
+					chart.fillChartReal(ySeries, xSeries);
 				}
 			}
 		});
