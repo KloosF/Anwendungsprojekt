@@ -1,6 +1,7 @@
 package View;
 
 import helper.classes.ChartClass;
+import helper.classes.MinMaxHelpers;
 import helper.classes.VerifyText;
 import integer.distributions.BinomialDistributionLogic;
 import integer.distributions.GeometricDistributionLogic;
@@ -85,9 +86,10 @@ public class PascalComposite extends Composite{
 					PascalDistributionLogic bin = new PascalDistributionLogic(
 							Integer.parseInt(numberOfSuccess.getText()), 
 							Double.parseDouble(probability.getText()));
-					double[] ySeries = bin.createYSeries();
+					double[] ySeries = bin.createYSeries(chart);
 					int[] xSeries = bin.createXSeries();
 					chart.fillChartInteger(ySeries, xSeries);
+					MinMaxHelpers.maxRange(chart);
 				}
 			}
 		});

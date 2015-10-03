@@ -25,7 +25,7 @@ public class BinomialDistributionLogic extends IntegerLogic{
 	
 	public int[] createXSeries(){
 		int[] xSeries = new int[bin.getNumberOfTrials()];
-		for (int i = 0; i <= bin.getNumberOfTrials(); i++) {
+		for (int i = 0; i < bin.getNumberOfTrials(); i++) {
 			xSeries[i] = i;
 			//TODO: delete everywhere
 		}

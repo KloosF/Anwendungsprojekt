@@ -61,7 +61,7 @@ public class PoissonComposite extends Composite{
 			public void widgetSelected(SelectionEvent e){
 				if (!poissonMean.getText().equals("")) {
 					PoissonDistributionLogic poi = new PoissonDistributionLogic(Double.parseDouble(poissonMean.getText()));
-					double[] ySeries = poi.createYSeries();
+					double[] ySeries = poi.createYSeries(chart);
 					int[] xSeries = poi.createXSeries();
 					chart.fillChartInteger(ySeries, xSeries);
 				}

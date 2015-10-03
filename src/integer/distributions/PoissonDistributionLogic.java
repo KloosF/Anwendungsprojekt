@@ -1,5 +1,8 @@
 package integer.distributions;
 
+import helper.classes.ChartClass;
+import helper.classes.MinMaxHelpers;
+
 import org.apache.commons.math3.distribution.PoissonDistribution;
 
 public class PoissonDistributionLogic extends IntegerLogic{
@@ -30,5 +33,10 @@ public class PoissonDistributionLogic extends IntegerLogic{
 			//TODO: delete everywhere
 		}
 		return xSeries;
+	}
+	
+	public double[] createYSeries(ChartClass chart){
+		double[] ySeries = MinMaxHelpers.calculateIntegerMaxX(this, 0, chart);
+		return ySeries;
 	}
 }

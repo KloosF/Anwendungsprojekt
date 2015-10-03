@@ -39,23 +39,6 @@ public class GeometricComposite extends Composite{
 		GridData data = new GridData(SWT.FILL, SWT.CENTER, false, false);
 		data.horizontalSpan = 2;
 		
-		Label triesLabel = new Label(this, SWT.NONE);
-		triesLabel.setText("Number of Tries");
-		triesLabel.setLayoutData(data);
-		
-		data = new GridData(SWT.FILL, SWT.FILL, true, false);
-		data.horizontalSpan = 2;
-		
-		tries = new Text(this, SWT.BORDER);
-		tries.setLayoutData(data);
-		tries.addVerifyListener(new VerifyListener() {
-			
-			@Override
-			public void verifyText(VerifyEvent e) {
-				VerifyText.verifyTrials(e);
-			}
-		});
-		
 		data = new GridData(SWT.FILL, SWT.CENTER, true, false);
 		data.horizontalSpan = 2;
 		
@@ -113,11 +96,11 @@ public class GeometricComposite extends Composite{
 			
 			@Override
 			public void widgetSelected(SelectionEvent e){
-				if (!tries.getText().equals("") && !probability.getText().equals("")) {
+				if (!probability.getText().equals("")) {
 					GeometricDistributionLogic geo = new GeometricDistributionLogic(
 							Double.parseDouble(probability.getText()));
-					double[] ySeries = geo.createYSeries(Integer.parseInt(tries.getText()));
-					int[] xSeries = geo.createXSeries(Integer.parseInt(tries.getText()));
+					double[] ySeries = geo.createYSeries(chart);
+					int[] xSeries = geo.createXSeries(10);
 					chart.fillChartInteger(ySeries, xSeries);
 				}
 			}

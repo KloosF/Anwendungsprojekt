@@ -1,5 +1,8 @@
 package integer.distributions;
 
+import helper.classes.ChartClass;
+import helper.classes.MinMaxHelpers;
+
 import org.apache.commons.math3.distribution.GeometricDistribution;
 
 public class GeometricDistributionLogic extends IntegerLogic{
@@ -14,12 +17,8 @@ public class GeometricDistributionLogic extends IntegerLogic{
 		return geo.probability(x);
 	}
 	
-	public double[] createYSeries(int n){
-		double[] ySeries = new double[n+1];
-		for (int i = 0; i <= n; i++) {
-			ySeries[i] = geo.probability(i);
-			System.out.println(geo.probability(i));
-		}
+	public double[] createYSeries(ChartClass chart){
+		double[] ySeries = MinMaxHelpers.calculateIntegerMaxX(this, 0, chart);
 		return ySeries;
 	}
 	

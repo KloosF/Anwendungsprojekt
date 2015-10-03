@@ -1,6 +1,10 @@
 package integer.distributions;
 
+import helper.classes.ChartClass;
+import helper.classes.MinMaxHelpers;
+
 import org.apache.commons.math3.distribution.PascalDistribution;
+import org.swtchart.Chart;
 
 public class PascalDistributionLogic extends IntegerLogic{
 	public PascalDistribution pas;
@@ -15,12 +19,8 @@ public class PascalDistributionLogic extends IntegerLogic{
 		return pas.probability(x);
 	}
 	
-	public double[] createYSeries(){
-		double[] ySeries = new double[r + 1];
-		for (int i = 0; i <= r; i++) {
-			ySeries[i] = pas.probability(i);
-			System.out.println(pas.probability(i));
-		}
+	public double[] createYSeries(ChartClass chart){
+		double[] ySeries = MinMaxHelpers.calculateIntegerMaxX(this, 0, chart);
 		return ySeries;
 	}
 	
@@ -31,5 +31,11 @@ public class PascalDistributionLogic extends IntegerLogic{
 			//TODO: delete everywhere
 		}
 		return xSeries;
+	}
+
+	@Override
+	public double[] createYSeries() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
