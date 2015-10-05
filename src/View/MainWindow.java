@@ -113,7 +113,6 @@ public class MainWindow {
 					"ChiSquaredDistribution",
 					"ExponentialDistribution",
 					"LaplaceDistribution",
-					"LogNormalDistribution",
 					"NormalDistribution"});
 			
 			//erstes Element auswählen

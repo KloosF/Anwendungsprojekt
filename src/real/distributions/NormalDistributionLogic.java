@@ -1,26 +1,28 @@
 package real.distributions;
 
-import org.apache.commons.math3.distribution.NormalDistribution;
+import integer.distributions.IntegerDistribution;
+import helper.classes.ChartClass;
+import helper.classes.MinMaxHelpers;
 
-public class NormalDistributionLogic {
+import org.apache.commons.math3.distribution.NormalDistribution;
+import org.swtchart.Range;
+
+public class NormalDistributionLogic extends RealDistibution{
 	public NormalDistribution norm;
 	
 	public NormalDistributionLogic(double mean, double sd, double inverseCumAccuracy){
 		norm = new NormalDistribution(mean, sd, inverseCumAccuracy);
 	}
 	
-	public double calculate(int x){
-		return norm.probability(x);
+	@Override
+	public double calculate(double x){
+		return norm.density(x);
 	}
 	
-	public double[] createYSeries(){
-		double[] ySeries = new double[21];
-		for (int i = 0; i <= 20; i++) {
-			ySeries[i] = norm.density(i);
-			//TODO: delete everywhere
-			System.out.println(norm.density(i));
-		}
-		System.out.println("-----------");
+	public double[] createYSeries(ChartClass chart){
+		MinMaxHelpers.calculateRealMaxX(this, 0, chart);
+		Range range = MinMaxHelpers.maxRange(chart);
+		double[] ySeries = MinMaxHelpers.calculateRealYSeries(range, chart, this);
 		return ySeries;
 	}
 	
@@ -31,5 +33,16 @@ public class NormalDistributionLogic {
 			//TODO: delete everywhere
 		}
 		return xSeries;
+	}
+	
+	public double[] createYSeries(){
+	double[] ySeries = new double[21];
+	for (int i = 0; i <= 20; i++) {
+		ySeries[i] = norm.cumulativeProbability(i);
+		//TODO: delete everywhere
+		System.out.println(ySeries[i]);
+	}
+	System.out.println("---------------");
+	return ySeries;
 	}
 }

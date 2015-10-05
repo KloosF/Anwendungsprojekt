@@ -36,9 +36,6 @@ public class DistributionSelect {
 			new LaplaceComposite(group, SWT.NONE, MainWindow.chart);
 		}
 		else if (selectionIndex == 4) {
-			new LogNormalComposite(group, SWT.NONE, MainWindow.chart);
-		}
-		else if (selectionIndex == 5) {
 			new NormalComposite(group, SWT.NONE, MainWindow.chart);
 		}
 	}

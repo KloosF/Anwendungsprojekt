@@ -2,7 +2,7 @@ package integer.distributions;
 
 import org.apache.commons.math3.distribution.*;
 
-public class BinomialDistributionLogic extends IntegerLogic{
+public class BinomialDistributionLogic extends IntegerDistribution{
 
 	public BinomialDistribution bin;
 	
@@ -11,6 +11,7 @@ public class BinomialDistributionLogic extends IntegerLogic{
 		bin = new BinomialDistribution(trials, p);
 	}
 	
+	@Override
 	public double calculate(int x){
 		return bin.probability(x);
 	}

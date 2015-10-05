@@ -1,7 +1,6 @@
 package integer.distributions;
 
-public abstract class IntegerLogic {
+public abstract class IntegerDistribution {
 
 	public abstract double calculate(int x);
-	public abstract double[] createYSeries();
 }

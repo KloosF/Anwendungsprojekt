@@ -5,7 +5,7 @@ import helper.classes.MinMaxHelpers;
 
 import org.apache.commons.math3.distribution.GeometricDistribution;
 
-public class GeometricDistributionLogic extends IntegerLogic{
+public class GeometricDistributionLogic extends IntegerDistribution{
 
 	public GeometricDistribution geo;
 	
@@ -13,6 +13,7 @@ public class GeometricDistributionLogic extends IntegerLogic{
 		geo = new GeometricDistribution(p);
 	}
 	
+	@Override
 	public double calculate(int x){
 		return geo.probability(x);
 	}
@@ -29,11 +30,5 @@ public class GeometricDistributionLogic extends IntegerLogic{
 			//TODO: delete everywhere
 		}
 		return xSeries;
-	}
-
-	@Override
-	public double[] createYSeries() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

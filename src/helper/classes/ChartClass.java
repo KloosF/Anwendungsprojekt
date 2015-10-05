@@ -51,7 +51,8 @@ public class ChartClass extends Composite{
 			
 			chart.getLegend().setVisible(false);
 			chart.redraw();
-			MinMaxHelpers.maxRange(this);	
+			Range range = MinMaxHelpers.maxRange(this);	
+			chart.getAxisSet().getXAxis(0).setRange(range);
 	}
 	
 	public void fillChartReal(double[] ySeries, double[] xSeries){
@@ -61,11 +62,15 @@ public class ChartClass extends Composite{
 
 		series.setYSeries(ySeries);
 		
-		chart.getAxisSet().adjustRange();
+		chart.getAxisSet().getYAxis(0).setRange(new Range(0, 1));
+		chart.getAxisSet().getXAxis(0).adjustRange();
 		
 		chart.getLegend().setVisible(false);
 		chart.redraw();
-		//MinMaxHelpers.maxRange(this);	
+		
+		//TODO
+		//Range range = MinMaxHelpers.maxRange(this);	
+		//chart.getAxisSet().getXAxis(0).setRange(range);
 	}
 	
 	public ISeriesSet getSeriesSet(){

@@ -14,12 +14,13 @@ public class LaplaceDistributionLogic {
 	}
 	
 	public double[] createYSeries(){
-		double[] ySeries = new double[11];
-		for (int i = 0; i <= 10; i++) {
-			ySeries[i] = laplace.density(i);
+		double[] ySeries = new double[21];
+		for (int i = 0; i <= 20; i++) {
+			ySeries[i] = laplace.cumulativeProbability(i);
 			//TODO: delete everywhere
-			System.out.println(laplace.density(i));
+			System.out.println(ySeries[i]);
 		}
+		System.out.println("---------------");
 		return ySeries;
 	}
 	

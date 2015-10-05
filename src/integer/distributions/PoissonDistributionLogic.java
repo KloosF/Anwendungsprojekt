@@ -5,13 +5,14 @@ import helper.classes.MinMaxHelpers;
 
 import org.apache.commons.math3.distribution.PoissonDistribution;
 
-public class PoissonDistributionLogic extends IntegerLogic{
+public class PoissonDistributionLogic extends IntegerDistribution{
 	public PoissonDistribution poi;
 	
 	public PoissonDistributionLogic(double p){
 		poi = new PoissonDistribution(p);
 	}
 	
+	@Override
 	public double calculate(int x){
 		return poi.probability(x);
 	}

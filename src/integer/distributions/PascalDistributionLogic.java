@@ -6,7 +6,7 @@ import helper.classes.MinMaxHelpers;
 import org.apache.commons.math3.distribution.PascalDistribution;
 import org.swtchart.Chart;
 
-public class PascalDistributionLogic extends IntegerLogic{
+public class PascalDistributionLogic extends IntegerDistribution{
 	public PascalDistribution pas;
 	private int r;
 	
@@ -15,6 +15,7 @@ public class PascalDistributionLogic extends IntegerLogic{
 		this.r = r;
 	}
 	
+	@Override
 	public double calculate(int x){
 		return pas.probability(x);
 	}
@@ -31,11 +32,5 @@ public class PascalDistributionLogic extends IntegerLogic{
 			//TODO: delete everywhere
 		}
 		return xSeries;
-	}
-
-	@Override
-	public double[] createYSeries() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

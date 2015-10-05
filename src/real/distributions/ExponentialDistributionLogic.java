@@ -3,22 +3,22 @@ package real.distributions;
 import org.apache.commons.math3.distribution.ExponentialDistribution;
 
 public class ExponentialDistributionLogic {
-	public ExponentialDistribution norm;
+	public ExponentialDistribution exp;
 	private double inv;
 	
 	public ExponentialDistributionLogic(double mean, double inverseCumAccuracy){
-		norm = new ExponentialDistribution(mean, inverseCumAccuracy);
+		exp = new ExponentialDistribution(mean, inverseCumAccuracy);
 		inv = inverseCumAccuracy;
 	}
 	
 	public double calculate(int x){
-		return norm.probability(x);
+		return exp.probability(x);
 	}
 	
 	public double[] createYSeries(){
-		double[] ySeries = new double[11];
-		for (int i = 0; i <= 10; i++) {
-			ySeries[i] = norm.density(i);
+		double[] ySeries = new double[21];
+		for (int i = 0; i <= 20; i++) {
+			ySeries[i] = exp.cumulativeProbability(i);
 			//TODO: delete everywhere
 			System.out.println(ySeries[i]);
 		}

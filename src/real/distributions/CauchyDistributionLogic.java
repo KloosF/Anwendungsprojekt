@@ -14,13 +14,13 @@ public class CauchyDistributionLogic {
 	}
 	
 	public double[] createYSeries(){
-		double[] ySeries = new double[11];
-		for (int i = 0; i <= 10; i++) {
-			ySeries[i] = cauchy.density(i);
+		double[] ySeries = new double[21];
+		for (int i = 0; i <= 20; i++) {
+			ySeries[i] = cauchy.cumulativeProbability(i);
 			//TODO: delete everywhere
-			System.out.println(cauchy.density(i));
+			System.out.println(ySeries[i]);
 		}
-		System.out.println("-----------------");
+		System.out.println("---------------");
 		return ySeries;
 	}
 	
