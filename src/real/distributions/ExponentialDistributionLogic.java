@@ -8,8 +8,8 @@ import org.apache.commons.math3.distribution.ExponentialDistribution;
 public class ExponentialDistributionLogic extends RealDistibution{
 	public ExponentialDistribution exp;
 	
-	public ExponentialDistributionLogic(double mean, double inverseCumAccuracy){
-		exp = new ExponentialDistribution(mean, inverseCumAccuracy);
+	public ExponentialDistributionLogic(double mean){
+		exp = new ExponentialDistribution(mean);
 	}
 	
 	public double[] createYSeries(){

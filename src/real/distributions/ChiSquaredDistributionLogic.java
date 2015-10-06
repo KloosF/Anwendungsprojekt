@@ -10,8 +10,8 @@ import org.swtchart.Range;
 public class ChiSquaredDistributionLogic extends RealDistibution{
 	public ChiSquaredDistribution chi;
 	
-	public ChiSquaredDistributionLogic(double degreesOfFreedom, double inverseCumAccuracy){
-		chi = new ChiSquaredDistribution(degreesOfFreedom, inverseCumAccuracy);
+	public ChiSquaredDistributionLogic(double degreesOfFreedom){
+		chi = new ChiSquaredDistribution(degreesOfFreedom);
 	}
 	
 	@Override

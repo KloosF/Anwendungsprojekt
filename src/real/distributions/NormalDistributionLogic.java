@@ -10,8 +10,8 @@ import org.swtchart.Range;
 public class NormalDistributionLogic extends RealDistibution{
 	public NormalDistribution norm;
 	
-	public NormalDistributionLogic(double mean, double sd, double inverseCumAccuracy){
-		norm = new NormalDistribution(mean, sd, inverseCumAccuracy);
+	public NormalDistributionLogic(double mean, double sd){
+		norm = new NormalDistribution(mean, sd);
 	}
 	
 	@Override
@@ -45,7 +45,21 @@ public class NormalDistributionLogic extends RealDistibution{
 	}
 	
 	public double[] createYSeries(ChartClass chart){
-		double[] xSeries = MinMaxHelpers.calculateRealMaxX(this, 0, chart);
+		double[] halfXSeries = MinMaxHelpers.calculateRealMaxX(this, 0, chart);
+		double[] xSeries = new double[2*halfXSeries.length - 1];
+		
+		//wird gebraucht um linke hälfte von xSeries zu berechnen
+		int first = halfXSeries.length - 1;
+		
+		int k;
+		for (k = 0; k < halfXSeries.length; k++) {
+			xSeries[k] = halfXSeries[k] - first;
+		}
+		for (int i = 1; i < halfXSeries.length; i++) {
+			xSeries[k] = halfXSeries[i];
+			k++;
+		}
+		
 		double[] ySeries = new double[xSeries.length];
 		for (int i = 0; i < xSeries.length; i++) {
 			ySeries[i] = norm.density(xSeries[i]);

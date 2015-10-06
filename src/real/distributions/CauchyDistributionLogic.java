@@ -8,8 +8,8 @@ import org.apache.commons.math3.distribution.CauchyDistribution;
 public class CauchyDistributionLogic extends RealDistibution{
 	public CauchyDistribution cauchy;
 	
-	public CauchyDistributionLogic(double median, double scale, double inverseCumAccuracy){
-		cauchy = new CauchyDistribution(median, scale, inverseCumAccuracy);
+	public CauchyDistributionLogic(double median, double scale){
+		cauchy = new CauchyDistribution(median, scale);
 	}
 	
 	public double[] createYSeries(){
@@ -33,7 +33,21 @@ public class CauchyDistributionLogic extends RealDistibution{
 	}
 	
 	public double[] createYSeries(ChartClass chart){
-		double[] xSeries = MinMaxHelpers.calculateRealMaxX(this, 0, chart);
+		double[] halfXSeries = MinMaxHelpers.calculateRealMaxX(this, 0, chart);
+		double[] xSeries = new double[2*halfXSeries.length - 1];
+		
+		//wird gebraucht um linke hälfte von xSeries zu berechnen
+		int first = halfXSeries.length - 1;
+		
+		int k;
+		for (k = 0; k < halfXSeries.length; k++) {
+			xSeries[k] = halfXSeries[k] - first;
+		}
+		for (int i = 1; i < halfXSeries.length; i++) {
+			xSeries[k] = halfXSeries[i];
+			k++;
+		}
+		
 		double[] ySeries = new double[xSeries.length];
 		for (int i = 0; i < xSeries.length; i++) {
 			ySeries[i] = cauchy.density(xSeries[i]);

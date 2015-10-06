@@ -23,12 +23,10 @@ public class CauchyComposite extends Composite{
 	
 	Text median;
 	Text scale;
-	Text inverseCumAccuracy;
 	ChartClass chart;
 	
 	String firstLabel = "Median";
 	String secondLabel = "Scale Parameter";
-	String thirdLabel = "Inverse cumulative probability accuracy";
 	
 	public CauchyComposite(Composite parent, int style, ChartClass chart) {
 		super(parent, style);
@@ -77,23 +75,6 @@ public class CauchyComposite extends Composite{
 			}
 		});
 		
-		Label successLabel = new Label(this, SWT.NONE);
-		successLabel.setText(thirdLabel);
-		
-		data = new GridData(SWT.FILL, SWT.CENTER, true, false);
-		data.horizontalSpan = 2;
-		
-		inverseCumAccuracy = new Text(this, SWT.BORDER);
-		inverseCumAccuracy.setLayoutData(data);
-		inverseCumAccuracy.setText(DEFAULT_INVERSE_ABSOLUTE_ACCURACY + "");
-		inverseCumAccuracy.addVerifyListener(new VerifyListener() {
-			
-			@Override
-			public void verifyText(VerifyEvent e) {
-				VerifyText.verifyMean(e);
-			}
-		});
-		
 		Button calculate = new Button(this, SWT.PUSH);
 		calculate.setText("Calculate");
 		calculate.addSelectionListener(new SelectionAdapter() {
@@ -101,10 +82,9 @@ public class CauchyComposite extends Composite{
 			//TODO Link to Logic
 			@Override
 			public void widgetSelected(SelectionEvent e){
-				if (!inverseCumAccuracy.getText().equals("") && !median.getText().equals("") && !scale.getText().equals("")) {
+				if (!median.getText().equals("") && !scale.getText().equals("")) {
 					CauchyDistributionLogic cauchy = new CauchyDistributionLogic(Double.parseDouble(median.getText()), 
-							Double.parseDouble(scale.getText()),
-							Double.parseDouble(inverseCumAccuracy.getText()));
+							Double.parseDouble(scale.getText()));
 					double[] ySeries = cauchy.createYSeries(chart);
 					double[] xSeries = cauchy.createXSeries();
 					chart.fillChartReal(ySeries, xSeries);

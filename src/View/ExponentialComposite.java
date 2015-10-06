@@ -22,11 +22,9 @@ public class ExponentialComposite extends Composite{
 	public static final double DEFAULT_INVERSE_ABSOLUTE_ACCURACY = 1e-9;
 	
 	Text mean;
-	Text inverseCumAccuracy;
 	ChartClass chart;
 	
 	String firstLabel = "Mean";
-	String thirdLabel = "Inverse cumulative probability accuracy";
 	
 	public ExponentialComposite(Composite parent, int style, ChartClass chart) {
 		super(parent, style);
@@ -58,23 +56,6 @@ public class ExponentialComposite extends Composite{
 			}
 		});
 		
-		Label successLabel = new Label(this, SWT.NONE);
-		successLabel.setText(thirdLabel);
-		
-		data = new GridData(SWT.FILL, SWT.CENTER, true, false);
-		data.horizontalSpan = 2;
-		
-		inverseCumAccuracy = new Text(this, SWT.BORDER);
-		inverseCumAccuracy.setLayoutData(data);
-		inverseCumAccuracy.setText(DEFAULT_INVERSE_ABSOLUTE_ACCURACY + "");
-		inverseCumAccuracy.addVerifyListener(new VerifyListener() {
-			
-			@Override
-			public void verifyText(VerifyEvent e) {
-				VerifyText.verifyMean(e);
-			}
-		});
-		
 		Button calculate = new Button(this, SWT.PUSH);
 		calculate.setText("Calculate");
 		calculate.addSelectionListener(new SelectionAdapter() {
@@ -82,9 +63,8 @@ public class ExponentialComposite extends Composite{
 			//TODO Link to Logic
 			@Override
 			public void widgetSelected(SelectionEvent e){
-				if (!inverseCumAccuracy.getText().equals("") && !mean.getText().equals("")) {
-					ExponentialDistributionLogic exp = new ExponentialDistributionLogic(Double.parseDouble(mean.getText()), 
-							Double.parseDouble(inverseCumAccuracy.getText()));
+				if (!mean.getText().equals("")) {
+					ExponentialDistributionLogic exp = new ExponentialDistributionLogic(Double.parseDouble(mean.getText()));
 					double[] ySeries = exp.createYSeries(chart);
 					double[] xSeries = exp.createXSeries();
 					chart.fillChartReal(ySeries, xSeries);

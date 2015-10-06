@@ -22,12 +22,10 @@ public class NormalComposite extends Composite{
 	
 	Text mean;
 	Text sd;
-	Text inverseCumAccuracy;
 	ChartClass chart;
 	
 	String firstLabel = "Normal Mean";
 	String secondLabel = "Standard Deviation";
-	String thirdLabel = "Inverse cumulative probability accuracy";
 	
 	public NormalComposite(Composite parent, int style, ChartClass chart) {
 		super(parent, style);
@@ -76,23 +74,6 @@ public class NormalComposite extends Composite{
 			}
 		});
 		
-		Label successLabel = new Label(this, SWT.NONE);
-		successLabel.setText(thirdLabel);
-		
-		data = new GridData(SWT.FILL, SWT.CENTER, true, false);
-		data.horizontalSpan = 2;
-		
-		inverseCumAccuracy = new Text(this, SWT.BORDER);
-		inverseCumAccuracy.setLayoutData(data);
-		inverseCumAccuracy.setText(DEFAULT_INVERSE_ABSOLUTE_ACCURACY + "");
-		inverseCumAccuracy.addVerifyListener(new VerifyListener() {
-			
-			@Override
-			public void verifyText(VerifyEvent e) {
-				VerifyText.verifyMean(e);
-			}
-		});
-		
 		Button calculate = new Button(this, SWT.PUSH);
 		calculate.setText("Calculate");
 		calculate.addSelectionListener(new SelectionAdapter() {
@@ -100,10 +81,9 @@ public class NormalComposite extends Composite{
 			//TODO Link to Logic
 			@Override
 			public void widgetSelected(SelectionEvent e){
-				if (!inverseCumAccuracy.getText().equals("") && !mean.getText().equals("") && !sd.getText().equals("")) {
+				if (!mean.getText().equals("") && !sd.getText().equals("")) {
 					NormalDistributionLogic norm = new NormalDistributionLogic(Double.parseDouble(mean.getText()), 
-							Double.parseDouble(sd.getText()),
-							Double.parseDouble(inverseCumAccuracy.getText()));
+							Double.parseDouble(sd.getText()));
 					double[] ySeries = norm.createYSeries(chart);
 					double[] xSeries = norm.createXSeries();
 					chart.fillChartReal(ySeries, xSeries);
