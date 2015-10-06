@@ -44,6 +44,7 @@ public class PoissonComposite extends Composite{
 		
 		poissonMean = new Text(this, SWT.BORDER);
 		poissonMean.setLayoutData(data);
+		poissonMean.setText("10");
 		poissonMean.addVerifyListener(new VerifyListener() {
 			
 			@Override

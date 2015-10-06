@@ -104,7 +104,7 @@ public class MainWindow {
 			
 			//erstes Element auswählen
 			fkt.select(0);
-			Composite params = new BinomialComposite(dynParameters, SWT.NONE, chart);
+			new BinomialComposite(dynParameters, SWT.NONE, chart);
 			dynParameters.getParent().layout();
 		}
 		else if (i == 1) {
@@ -117,7 +117,8 @@ public class MainWindow {
 			
 			//erstes Element auswählen
 			fkt.select(0);
-			//TODO: automatically load parameter comp for first distribution
+			new CauchyComposite(dynParameters, SWT.NONE, chart);
+			dynParameters.getParent().layout();
 		}
 		
 	}

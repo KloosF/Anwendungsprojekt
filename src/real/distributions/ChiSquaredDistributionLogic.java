@@ -20,9 +20,15 @@ public class ChiSquaredDistributionLogic extends RealDistibution{
 	}
 	
 	public double[] createYSeries(ChartClass chart){
-		MinMaxHelpers.calculateRealMaxX(this, 0, chart);
-		Range range = MinMaxHelpers.maxRange(chart);
-		double[] ySeries = MinMaxHelpers.calculateRealYSeries(range, chart, this);
+		double[] xSeries = MinMaxHelpers.calculateRealMaxX(this, 0, chart);
+		double[] ySeries = new double[xSeries.length];
+		for (int i = 0; i < xSeries.length; i++) {
+			ySeries[i] = chi.density(xSeries[i]);
+		}
+		//chart.fillChartReal(ySeries, null);
+		//Range range = MinMaxHelpers.maxRange(chart);
+		//chart.getAxisSet().getXAxis(0).setRange(range);
+		//ySeries = MinMaxHelpers.calculateRealYSeries(range, chart, this);
 		return ySeries;
 	}
 	
@@ -44,5 +50,10 @@ public class ChiSquaredDistributionLogic extends RealDistibution{
 		}
 		System.out.println("---------------");
 		return ySeries;
+	}
+
+	@Override
+	public double calculateCumulative(double x) {
+		return chi.cumulativeProbability(x);
 	}
 }

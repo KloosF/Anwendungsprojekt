@@ -49,6 +49,7 @@ public class ChiSquaredComposite extends Composite{
 		
 		degreesOfFreedom = new Text(this, SWT.BORDER);
 		degreesOfFreedom.setLayoutData(data);
+		degreesOfFreedom.setText("5");
 		degreesOfFreedom.addVerifyListener(new VerifyListener() {
 			
 			@Override
@@ -84,7 +85,7 @@ public class ChiSquaredComposite extends Composite{
 				if (!inverseCumAccuracy.getText().equals("") && !degreesOfFreedom.getText().equals("")) {
 					ChiSquaredDistributionLogic chi = new ChiSquaredDistributionLogic(Double.parseDouble(degreesOfFreedom.getText()),
 							Double.parseDouble(inverseCumAccuracy.getText()));
-					double[] ySeries = chi.createYSeries();
+					double[] ySeries = chi.createYSeries(chart);
 					double[] xSeries = chi.createXSeries();
 					chart.fillChartReal(ySeries, xSeries);
 				}

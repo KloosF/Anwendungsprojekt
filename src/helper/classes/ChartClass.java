@@ -11,6 +11,7 @@ import org.swtchart.ILineSeries;
 import org.swtchart.ISeries;
 import org.swtchart.ISeriesSet;
 import org.swtchart.Range;
+import org.swtchart.ILineSeries.PlotSymbolType;
 import org.swtchart.ISeries.SeriesType;
 import org.swtchart.internal.series.SeriesSet;
 
@@ -58,6 +59,25 @@ public class ChartClass extends Composite{
 	public void fillChartReal(double[] ySeries, double[] xSeries){
 		
 		ISeriesSet seriesSet = chart.getSeriesSet();
+		ILineSeries series = (ILineSeries) seriesSet.createSeries(SeriesType.LINE, "values");
+
+		series.setYSeries(ySeries);
+		series.setSymbolType(PlotSymbolType.NONE);
+		
+		chart.getAxisSet().getYAxis(0).adjustRange();
+		chart.getAxisSet().getXAxis(0).adjustRange();
+		
+		chart.getLegend().setVisible(false);
+		chart.redraw();
+		
+		//TODO
+		Range range = MinMaxHelpers.maxRange(this);	
+		chart.getAxisSet().getXAxis(0).setRange(range);
+	}
+	
+	public void fillChartRealCumulative(double[] ySeries, double[] xSeries){
+		
+		ISeriesSet seriesSet = chart.getSeriesSet();
 		ISeries series = seriesSet.createSeries(SeriesType.LINE, "values");
 
 		series.setYSeries(ySeries);
@@ -67,10 +87,6 @@ public class ChartClass extends Composite{
 		
 		chart.getLegend().setVisible(false);
 		chart.redraw();
-		
-		//TODO
-		//Range range = MinMaxHelpers.maxRange(this);	
-		//chart.getAxisSet().getXAxis(0).setRange(range);
 	}
 	
 	public ISeriesSet getSeriesSet(){

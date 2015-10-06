@@ -50,6 +50,7 @@ public class NormalComposite extends Composite{
 		
 		mean = new Text(this, SWT.BORDER);
 		mean.setLayoutData(data);
+		mean.setText("5");
 		mean.addVerifyListener(new VerifyListener() {
 			
 			@Override
@@ -66,6 +67,7 @@ public class NormalComposite extends Composite{
 		
 		sd = new Text(this, SWT.BORDER);
 		sd.setLayoutData(data);
+		sd.setText("1");
 		sd.addVerifyListener(new VerifyListener() {
 			
 			@Override
@@ -102,7 +104,7 @@ public class NormalComposite extends Composite{
 					NormalDistributionLogic norm = new NormalDistributionLogic(Double.parseDouble(mean.getText()), 
 							Double.parseDouble(sd.getText()),
 							Double.parseDouble(inverseCumAccuracy.getText()));
-					double[] ySeries = norm.createYSeries();
+					double[] ySeries = norm.createYSeries(chart);
 					double[] xSeries = norm.createXSeries();
 					chart.fillChartReal(ySeries, xSeries);
 				}

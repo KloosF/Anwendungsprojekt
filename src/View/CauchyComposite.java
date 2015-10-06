@@ -51,6 +51,7 @@ public class CauchyComposite extends Composite{
 		
 		median = new Text(this, SWT.BORDER);
 		median.setLayoutData(data);
+		median.setText("6");
 		median.addVerifyListener(new VerifyListener() {
 			
 			@Override
@@ -67,6 +68,7 @@ public class CauchyComposite extends Composite{
 		
 		scale = new Text(this, SWT.BORDER);
 		scale.setLayoutData(data);
+		scale.setText("2");
 		scale.addVerifyListener(new VerifyListener() {
 			
 			@Override
@@ -103,7 +105,7 @@ public class CauchyComposite extends Composite{
 					CauchyDistributionLogic cauchy = new CauchyDistributionLogic(Double.parseDouble(median.getText()), 
 							Double.parseDouble(scale.getText()),
 							Double.parseDouble(inverseCumAccuracy.getText()));
-					double[] ySeries = cauchy.createYSeries();
+					double[] ySeries = cauchy.createYSeries(chart);
 					double[] xSeries = cauchy.createXSeries();
 					chart.fillChartReal(ySeries, xSeries);
 				}

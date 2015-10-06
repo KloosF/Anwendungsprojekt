@@ -48,6 +48,7 @@ public class LaplaceComposite extends Composite{
 		
 		mu = new Text(this, SWT.BORDER);
 		mu.setLayoutData(data);
+		mu.setText("5");
 		mu.addVerifyListener(new VerifyListener() {
 			
 			@Override
@@ -64,6 +65,7 @@ public class LaplaceComposite extends Composite{
 		
 		beta = new Text(this, SWT.BORDER);
 		beta.setLayoutData(data);
+		beta.setText("2");
 		beta.addVerifyListener(new VerifyListener() {
 			
 			@Override
@@ -82,7 +84,7 @@ public class LaplaceComposite extends Composite{
 				if (!mu.getText().equals("") && !beta.getText().equals("")) {
 					LaplaceDistributionLogic laplace = new LaplaceDistributionLogic(Double.parseDouble(mu.getText()), 
 							Double.parseDouble(beta.getText()));
-					double[] ySeries = laplace.createYSeries();
+					double[] ySeries = laplace.createYSeries(chart);
 					double[] xSeries = laplace.createXSeries();
 					chart.fillChartReal(ySeries, xSeries);
 				}

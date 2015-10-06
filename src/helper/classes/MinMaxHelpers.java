@@ -145,7 +145,6 @@ public class MinMaxHelpers {
 			}
 			//Hochpunkt gefunden, ab hier nur noch bergab
 			xHochpunkt = xSeries[counter];
-			System.out.println("Hochpunkt: " + xHochpunkt);
 		}
 		
 		//überprüfen ob array mit xWerten "zu klein"
@@ -216,88 +215,40 @@ public class MinMaxHelpers {
 		return ySeries;
 	}
 	
-	public static double[] calculateRealMaxX(RealDistibution logic, int start, ChartClass chart)
+	public static double[] calculateRealMaxX(RealDistibution logic, double start, ChartClass chart)
 	{
-		//initiale Serie erstellen
+		//grobes Array erstellen, welches bei nächst kleinerem Int als start beginnt
+		//integer sind einfacher und evtl schneller um Grenzen zu bestimmen
+		int startHelp = (int) Math.floor(start);
 		double[] xSeries = new double[10];
 		for (int i = 0; i < xSeries.length; i++) {
-			xSeries[i] = i;
+			xSeries[i] = startHelp + i;
 		}
-		
-		double xHochpunkt = start;
-		int counter = start;
-		int max;
-		
-		//testen ob genügend Zahlen im Array
-		if (xSeries.length < 2) {
-			double[] ySeries = new double[xSeries.length];
-			for (int i = 0; i < xSeries.length; i++) {
-				ySeries[i] = logic.calculate(i);
-			}
-			return ySeries;
-		}
-		//testen ob Verteilung gleich abfällt
-		if (logic.calculate(xSeries[counter])-logic.calculate(xSeries[counter+1]) <= 0) {
-			
-			//Höhepunkt der Verteilung suchen
-			while(logic.calculate(xSeries[counter])-logic.calculate(xSeries[counter+1]) <= 0)
-			{
-				counter++;
-				if ((counter+2) > xSeries.length) {
-					
-					//ursprüngliche Länge *2 um Suche zu beschleunigen
-					double[] tmp = new double[2*xSeries.length];
-					for (int i = 0; i < tmp.length; i++) {
-						tmp[i] = i + xSeries[counter] + 1;
-					}
-					xSeries = new double[tmp.length];
-					xSeries = tmp;
-					counter = 0;
-				}
-			}
-			//Hochpunkt gefunden, ab hier nur noch bergab
-			xHochpunkt = xSeries[counter];
-			System.out.println("Hochpunkt: " + xHochpunkt);
-		}
-		
-		//überprüfen ob array mit xWerten "zu klein"
-		//counter zeigt direkt auf Höhepunkt, deshalb diesen mitnehmen
-		if (counter == xSeries.length-1 || counter == xSeries.length-2) {
-			double[] tmp = new double[2*xSeries.length];
-			for (int i = 0; i < tmp.length; i++) {
-				tmp[i] = i + xSeries[counter];
-			}
-			xSeries = new double[tmp.length];
-			xSeries = tmp;
-			counter = 0;
-		}
-		
-		//TODO: evtl Möglichkeit bei der gesammte Chart gezeichnet wird, nicht nur ab Höhepunkt
 		
 		double[] ySeries = new double[xSeries.length];
 		for (int i = 0; i < ySeries.length; i++) {
-			ySeries[i] = logic.calculate(xSeries[i]);
+			ySeries[i] = logic.calculateCumulative(xSeries[i]);
 		}
 		
-		//chart einmal zeichnen um Vergleiche anstellen zu können
-		chart.fillChartReal(ySeries, xSeries);
+		//chart mit cumulativen Werten zum analysieren füllen
+		//oberster yWert ist 1, da Wahrscheinlichkeit aufaddiert max 1 sein kann
+		chart.fillChartRealCumulative(ySeries, xSeries);
 		
-		System.out.println("chart gezeichnet");
- 		
-		//Maximum finden
-		int pixelDifference = 1;
-		while(!(pixelDifference == 0) && MinMaxHelpers.pointCloseToXAxis(chart, chart.getSeriesSet().getSeries()[0].getPixelCoordinates(counter).y))
+		int j = 0;
+		while(chart.getSeriesSet().getSeries()[0].getPixelCoordinates(j).y != 0)
 		{
-			if (counter + 2 >= ySeries.length) {
+			System.out.println("Zähler: " + j + "; yCoordinate: " + chart.getSeriesSet().getSeries()[0].getPixelCoordinates(j).y);
+			j++;
+			if (j >= ySeries.length) {
 				
-				counter = xSeries.length;
+				j = xSeries.length;
 				//x-Werte Array erweitern und befüllen, aktuelle Zahlen übernehmen
 				double[] tmp = new double[3*xSeries.length];
 				for (int i = 0; i < xSeries.length; i++) {
 					tmp[i] = xSeries[i];
 				}
 				for (int i = xSeries.length; i < tmp.length; i++) {
-					tmp[i] = i + xSeries[counter-1] + 2;
+					tmp[i] = i + xSeries[j-1] + 2;
 				}
 				xSeries = new double[tmp.length];
 				xSeries = tmp;
@@ -305,27 +256,20 @@ public class MinMaxHelpers {
 				//y-Werte Array neu befüllen
 				ySeries = new double[xSeries.length];
 				for (int i = 0; i < ySeries.length; i++) {
-					ySeries[i] = logic.calculate(xSeries[i]);
+					ySeries[i] = logic.calculateCumulative(xSeries[i]);
 				}
 				
 				//chart neu zeichnen für neue Berechnungen
-				chart.fillChartReal(ySeries, xSeries);
+				chart.fillChartRealCumulative(ySeries, xSeries);
 			}
-			
-			//herausfinden ob Höhe der Säulen fast gleich
-			pixelDifference = compareNextThreeYCoordinates(chart, counter);
-			
-			counter++;
 		}
-		System.out.println("y-Koordinate: " + chart.getSeriesSet().getSeries()[0].getPixelCoordinates(counter).y);
-		max = xSeries.length;
 		
-		//finale ySerie berechnen, von start bis max
-		ySeries = new double[(int) (Math.round(xSeries[max-1]) + 1)];
-		for (int i = 0; i < ySeries.length; i++) {
-			ySeries[i] = logic.calculate(i);
+		xSeries = new double[(j+startHelp)*2];
+		for (int i = 0; i < xSeries.length; i++) {
+			xSeries[i] = startHelp + i;
 		}
-		return ySeries;
+		
+		return xSeries;
 	}
 	
 	public static double[] calculateRealYSeries(Range range, ChartClass chart, RealDistibution logic)

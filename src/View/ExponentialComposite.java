@@ -49,6 +49,7 @@ public class ExponentialComposite extends Composite{
 		
 		mean = new Text(this, SWT.BORDER);
 		mean.setLayoutData(data);
+		mean.setText("5");
 		mean.addVerifyListener(new VerifyListener() {
 			
 			@Override
@@ -84,7 +85,7 @@ public class ExponentialComposite extends Composite{
 				if (!inverseCumAccuracy.getText().equals("") && !mean.getText().equals("")) {
 					ExponentialDistributionLogic exp = new ExponentialDistributionLogic(Double.parseDouble(mean.getText()), 
 							Double.parseDouble(inverseCumAccuracy.getText()));
-					double[] ySeries = exp.createYSeries();
+					double[] ySeries = exp.createYSeries(chart);
 					double[] xSeries = exp.createXSeries();
 					chart.fillChartReal(ySeries, xSeries);
 				}
