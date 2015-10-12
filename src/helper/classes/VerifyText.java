@@ -5,7 +5,13 @@ import org.eclipse.swt.widgets.Text;
 
 public class VerifyText {
 
+	//hilft dabei zu prüfen ob gerade an einem anderen textfeld gearbeitet wird
+	private static boolean verificationInProgress = false;
+	
 	public static void verifyProbability(VerifyEvent e){
+		
+		verificationInProgress = true;
+		
 		Text text = (Text)e.getSource();
 
         // get old text and create new text by using the VerifyEvent.text
@@ -40,9 +46,15 @@ public class VerifyText {
         if(!isDouble){
             e.doit = false;
         }
+        
+      //Bearbeitung beendet
+        verificationInProgress = false;
 	}
 	
 	public static void verifyTrials(VerifyEvent e){
+		
+		verificationInProgress = true;
+		
 		String text = e.text;
 		char[] chars = new char[text.length()];
 		text.getChars(0, chars.length, chars, 0);
@@ -52,9 +64,15 @@ public class VerifyText {
 				return;
 			}
 		}
+		
+		//Bearbeitung beendet
+        verificationInProgress = false;
 	}
 	
 	public static void verifyMean(VerifyEvent e){
+		
+		verificationInProgress = true;
+		
 		Text text = (Text)e.getSource();
 
         // get old text and create new text by using the VerifyEvent.text
@@ -84,5 +102,12 @@ public class VerifyText {
         if(!isDouble){
             e.doit = false;
         }
+        
+        //Bearbeitung beendet
+        verificationInProgress = false;
+	}
+	
+	public static boolean getVerificationFlag(){
+		return verificationInProgress;
 	}
 }

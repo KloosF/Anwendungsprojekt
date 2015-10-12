@@ -44,8 +44,8 @@ public class NormalDistributionLogic extends RealDistibution{
 		return norm.cumulativeProbability(x);
 	}
 	
-	public double[] createYSeries(ChartClass chart){
-		double[] halfXSeries = MinMaxHelpers.calculateRealMaxX(this, 0, chart);
+	public double[] createYSeries(ChartClass chart, Double start){
+		double[] halfXSeries = MinMaxHelpers.calculateRealMaxX(this, start, chart);
 		double[] xSeries = new double[2*halfXSeries.length - 1];
 		
 		//wird gebraucht um linke hälfte von xSeries zu berechnen
@@ -64,6 +64,12 @@ public class NormalDistributionLogic extends RealDistibution{
 		for (int i = 0; i < xSeries.length; i++) {
 			ySeries[i] = norm.density(xSeries[i]);
 		}
+		
+		chart.fillChartReal(ySeries, xSeries);
+		Range help = MinMaxHelpers.maxRange(chart);
+		
+		ySeries = MinMaxHelpers.calculateRealYSeries(new Range(xSeries[0], xSeries[xSeries.length-1]), chart, this);
+		
 		//chart.fillChartReal(ySeries, null);
 		//Range range = MinMaxHelpers.maxRange(chart);
 		//chart.getAxisSet().getXAxis(0).setRange(range);

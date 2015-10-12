@@ -1,4 +1,5 @@
 package View;
+import helper.classes.AutoCalcThread;
 import helper.classes.ChartClass;
 import helper.classes.VerifyText;
 import integer.distributions.BinomialDistributionLogic;
@@ -49,6 +50,11 @@ public class BinomialComposite extends Composite{
 			@Override
 			public void verifyText(VerifyEvent e) {
 				VerifyText.verifyTrials(e);
+				//TODO: vielleicht neuen Thread starten, der sich darum kümmert
+				
+				//String[] texts = new String[]{tries.getText(), probability.getText()};
+				//AutoCalcThread t = new AutoCalcThread(0, texts, chart);
+				//t.run();		
 			}
 		});
 		

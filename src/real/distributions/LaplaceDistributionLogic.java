@@ -32,8 +32,8 @@ public class LaplaceDistributionLogic extends RealDistibution{
 		return xSeries;
 	}
 	
-	public double[] createYSeries(ChartClass chart){
-		double[] halfXSeries = MinMaxHelpers.calculateRealMaxX(this, 0, chart);
+	public double[] createYSeries(ChartClass chart, Double start){
+		double[] halfXSeries = MinMaxHelpers.calculateRealMaxX(this, start, chart);
 		double[] xSeries = new double[2*halfXSeries.length - 1];
 		
 		//wird gebraucht um linke hälfte von xSeries zu berechnen

@@ -65,7 +65,7 @@ public class ChiSquaredComposite extends Composite{
 			public void widgetSelected(SelectionEvent e){
 				if (!degreesOfFreedom.getText().equals("")) {
 					ChiSquaredDistributionLogic chi = new ChiSquaredDistributionLogic(Double.parseDouble(degreesOfFreedom.getText()));
-					double[] ySeries = chi.createYSeries(chart);
+					double[] ySeries = chi.createYSeries(chart, Double.parseDouble(degreesOfFreedom.getText()));
 					double[] xSeries = chi.createXSeries();
 					chart.fillChartReal(ySeries, xSeries);
 				}

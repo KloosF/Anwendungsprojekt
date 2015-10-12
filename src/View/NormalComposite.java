@@ -84,7 +84,7 @@ public class NormalComposite extends Composite{
 				if (!mean.getText().equals("") && !sd.getText().equals("")) {
 					NormalDistributionLogic norm = new NormalDistributionLogic(Double.parseDouble(mean.getText()), 
 							Double.parseDouble(sd.getText()));
-					double[] ySeries = norm.createYSeries(chart);
+					double[] ySeries = norm.createYSeries(chart, Double.parseDouble(mean.getText()));
 					double[] xSeries = norm.createXSeries();
 					chart.fillChartReal(ySeries, xSeries);
 				}

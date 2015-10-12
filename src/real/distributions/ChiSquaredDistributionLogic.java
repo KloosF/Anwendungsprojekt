@@ -2,10 +2,8 @@ package real.distributions;
 
 import helper.classes.ChartClass;
 import helper.classes.MinMaxHelpers;
-import integer.distributions.IntegerDistribution;
 
 import org.apache.commons.math3.distribution.ChiSquaredDistribution;
-import org.swtchart.Range;
 
 public class ChiSquaredDistributionLogic extends RealDistibution{
 	public ChiSquaredDistribution chi;
@@ -19,8 +17,14 @@ public class ChiSquaredDistributionLogic extends RealDistibution{
 		return chi.density(x);
 	}
 	
-	public double[] createYSeries(ChartClass chart){
-		double[] xSeries = MinMaxHelpers.calculateRealMaxX(this, 0, chart);
+	public double[] createYSeries(ChartClass chart, double start){
+		double[] xSeries;
+		if (start == 1) {
+			xSeries = MinMaxHelpers.calculateRealMaxX(this, 1, chart);
+		}
+		else {
+			xSeries = MinMaxHelpers.calculateRealMaxX(this, 0, chart);
+		}
 		double[] ySeries = new double[xSeries.length];
 		for (int i = 0; i < xSeries.length; i++) {
 			ySeries[i] = chi.density(xSeries[i]);

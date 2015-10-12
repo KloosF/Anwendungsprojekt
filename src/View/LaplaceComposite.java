@@ -84,7 +84,7 @@ public class LaplaceComposite extends Composite{
 				if (!mu.getText().equals("") && !beta.getText().equals("")) {
 					LaplaceDistributionLogic laplace = new LaplaceDistributionLogic(Double.parseDouble(mu.getText()), 
 							Double.parseDouble(beta.getText()));
-					double[] ySeries = laplace.createYSeries(chart);
+					double[] ySeries = laplace.createYSeries(chart, Double.parseDouble(mu.getText()));
 					double[] xSeries = laplace.createXSeries();
 					chart.fillChartReal(ySeries, xSeries);
 				}

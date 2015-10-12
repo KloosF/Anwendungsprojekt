@@ -85,7 +85,7 @@ public class CauchyComposite extends Composite{
 				if (!median.getText().equals("") && !scale.getText().equals("")) {
 					CauchyDistributionLogic cauchy = new CauchyDistributionLogic(Double.parseDouble(median.getText()), 
 							Double.parseDouble(scale.getText()));
-					double[] ySeries = cauchy.createYSeries(chart);
+					double[] ySeries = cauchy.createYSeries(chart, Double.parseDouble(median.getText()));
 					double[] xSeries = cauchy.createXSeries();
 					chart.fillChartReal(ySeries, xSeries);
 				}

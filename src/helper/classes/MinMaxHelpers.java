@@ -277,7 +277,7 @@ public class MinMaxHelpers {
 		double min = range.lower;
 		double max = range.upper;
 		int xPixels = chart.getAxisSet().getXAxis(0).getTick().getBounds().width;
-		double delta = xPixels / (max-min);
+		double delta = (max-min) / xPixels;
 		
 		double[] xSeries = new double[xPixels];
 		xSeries[0] = min;
