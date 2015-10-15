@@ -1,42 +1,22 @@
 package helper.classes;
 
+import org.deidentifier.arx.distribution.gui.BinomialComposite;
+import org.deidentifier.arx.distribution.gui.MainWindow;
+import org.deidentifier.arx.distribution.gui.NormalComposite;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Group;
-
-import View.*;
 
 public class DistributionSelect {
 	
 	private static void selectIntegerDistributionComposite(int selectionIndex, Group group){
 		if (selectionIndex == 0) {
-			new BinomialComposite(group, SWT.NONE, MainWindow.chart);
-		}
-		else if (selectionIndex == 1) {
-			new GeometricComposite(group, SWT.NONE, MainWindow.chart);
-		}
-		else if (selectionIndex == 2) {
-			new PascalComposite(group, SWT.NONE, MainWindow.chart);
-		}
-		else if (selectionIndex == 3) {
-			new PoissonComposite(group, SWT.NONE, MainWindow.chart);
+			new BinomialComposite(group);
 		}
 	}
 	
 	private static void selectRealDistributionComposite(int selectionIndex, Group group){
 		if (selectionIndex == 0) {
-			new CauchyComposite(group, SWT.NONE, MainWindow.chart);
-		}
-		else if (selectionIndex == 1) {
-			new ChiSquaredComposite(group, SWT.NONE, MainWindow.chart);
-		}
-		else if (selectionIndex == 2) {
-			new ExponentialComposite(group, SWT.NONE, MainWindow.chart);
-		}
-		else if (selectionIndex == 3) {
-			new LaplaceComposite(group, SWT.NONE, MainWindow.chart);
-		}
-		else if (selectionIndex == 4) {
-			new NormalComposite(group, SWT.NONE, MainWindow.chart);
+			new NormalComposite(group);
 		}
 	}
 	
