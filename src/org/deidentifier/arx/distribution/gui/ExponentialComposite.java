@@ -9,11 +9,12 @@ public class ExponentialComposite extends AbstractDistributionComposite<Double>{
 
 	/** Field*/
 	private final int mean;
+	
+	private boolean discrete;
 
 	public ExponentialComposite(Composite parent) {
 		super(parent);
 		mean = createDoubleField("Rate parameter", 1d, 0d, Double.MAX_VALUE);
-		setResult(createResult());
 	}
 	
 	@Override
@@ -26,7 +27,7 @@ public class ExponentialComposite extends AbstractDistributionComposite<Double>{
 		}
 		
 		double[] minmax = getMinimumMaximum(param1);
-		return new ContinuousDistribution(minmax[0], minmax[1], 
+		return new ContinuousDistribution(minmax[0], minmax[1], discrete,
 										  new ExponentialDistribution(param1));
 	}
 
@@ -41,6 +42,15 @@ public class ExponentialComposite extends AbstractDistributionComposite<Double>{
 		double x2 = getXWhereYLessThanOrEqualTo(distribution, 0, 0.0001d);
 		return new double[]{0, x2};
 		
+	}
+	
+	/**
+	 * Sets the discrete flag if distribution should be handled and shown as one
+	 * @param isDiscrete
+	 */
+	public void setDiscrete(boolean isDiscrete) {
+		discrete = isDiscrete;
+		setResult(createResult());
 	}
 
 }

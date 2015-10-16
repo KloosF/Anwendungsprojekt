@@ -44,14 +44,26 @@ public class DistributionPlot{
 
 	public void update(ContinuousDistribution result) {
 
-		ISeriesSet seriesSet = chart.getSeriesSet();
-		ISeries series = seriesSet.createSeries(SeriesType.LINE, "values");
-		double[] xSeries = getXSeries(result);
-		series.setXSeries(xSeries);
-		series.setYSeries(getYSeries(xSeries, result));
-		chart.getAxisSet().adjustRange();
-		chart.getLegend().setVisible(false);
-		chart.redraw();
+		if (result.getDiscreteFlag()) {
+			ISeriesSet seriesSet = chart.getSeriesSet();
+			ISeries series = seriesSet.createSeries(SeriesType.BAR, "values");
+			double[] xSeries = getXSeries(result);
+			series.setXSeries(xSeries);
+			series.setYSeries(getYSeries(xSeries, result));
+			chart.getAxisSet().adjustRange();
+			chart.getLegend().setVisible(false);
+			chart.redraw();
+		}
+		else {
+			ISeriesSet seriesSet = chart.getSeriesSet();
+			ISeries series = seriesSet.createSeries(SeriesType.LINE, "values");
+			double[] xSeries = getXSeries(result);
+			series.setXSeries(xSeries);
+			series.setYSeries(getYSeries(xSeries, result));
+			chart.getAxisSet().adjustRange();
+			chart.getLegend().setVisible(false);
+			chart.redraw();
+		}
 	}
 
 	public void update(DiscreteDistribution result) {
@@ -88,14 +100,25 @@ public class DistributionPlot{
 	private double[] getXSeries(ContinuousDistribution result) {
 
 		// TODO: Update when size of the chart changes
-		
-		int width = chart.getBounds().width;
-		double delta = (result.getMaximum() - result.getMinimum()) / (double) width;
-		double[] array = new double[width + 1];
-		for (int i = 0; i <= width; i++) {
-			array[i] = result.getMinimum() + (double) i * delta;
+		double[] array;
+		if (result.getDiscreteFlag()) {
+			array = new double[(int) (Math.round(result.getMaximum()) - Math.round(result.getMinimum()) + 1)];
+			int index = 0;
+			for (int x = (int) Math.round(result.getMinimum()); x <= result.getMaximum(); x++){
+				array[index++] = x;
+			}
+			return array;
 		}
-		return array;
+		else
+		{
+			int width = chart.getBounds().width;
+			double delta = (result.getMaximum() - result.getMinimum()) / (double) width;
+			array = new double[width + 1];
+			for (int i = 0; i <= width; i++) {
+				array[i] = result.getMinimum() + (double) i * delta;
+			}
+			return array;
+		}
 	}
 	
 	private double[] getYSeries(double[] xSeries, ContinuousDistribution result) {

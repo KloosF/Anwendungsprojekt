@@ -6,12 +6,14 @@ public class ContinuousDistribution extends AbstractDistribution<Double>{
 
 	private double min;
 	private double max;
+	private boolean asDiscrete;
 	private AbstractRealDistribution distribution;
 	
-	public ContinuousDistribution(double min, double max,
+	public ContinuousDistribution(double min, double max, boolean asDiscrete,
 			AbstractRealDistribution distribution) {
 		this.min = min;
 		this.max = max;
+		this.asDiscrete = asDiscrete;
 		this.distribution = distribution;
 	}
 
@@ -23,6 +25,10 @@ public class ContinuousDistribution extends AbstractDistribution<Double>{
 	@Override
 	public Double getMaximum() {
 		return max;
+	}
+	
+	public boolean getDiscreteFlag(){
+		return asDiscrete;
 	}
 
 	@Override

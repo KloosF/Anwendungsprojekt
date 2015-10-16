@@ -10,10 +10,11 @@ public class ChiSquaredComposite extends AbstractDistributionComposite<Double>{
 	/** Field*/
 	private final int degreesOfFreedom;
 
+	private boolean discrete;
+	
 	public ChiSquaredComposite(Composite parent) {
 		super(parent);
 		degreesOfFreedom = createIntegerField("Degrees of freedom", 3, 1, Integer.MAX_VALUE);
-		setResult(createResult());
 	}
 	
 	@Override
@@ -27,11 +28,11 @@ public class ChiSquaredComposite extends AbstractDistributionComposite<Double>{
 		
 		double[] minmax = getMinimumMaximum(param1);
 		if (param1 != 1) {
-			return new ContinuousDistribution(minmax[0], minmax[1], 
+			return new ContinuousDistribution(minmax[0], minmax[1], discrete,
 					  new ChiSquaredDistribution(param1));
 		}
 		else {
-			return new ContinuousDistribution(minmax[0], minmax[1], 
+			return new ContinuousDistribution(minmax[0], minmax[1], discrete,
 					  new ChiSquaredDistribution(param1));
 		}
 	}
@@ -47,5 +48,14 @@ public class ChiSquaredComposite extends AbstractDistributionComposite<Double>{
 		double x2 = getXWhereYLessThanOrEqualTo(distribution, 0, 0.0001d);
 		return new double[]{0, x2};
 		
+	}
+	
+	/**
+	 * Sets the discrete flag if distribution should be handled and shown as one
+	 * @param isDiscrete
+	 */
+	public void setDiscrete(boolean isDiscrete) {
+		discrete = isDiscrete;
+		setResult(createResult());
 	}
 }
