@@ -11,13 +11,12 @@ public class LaplaceComposite extends AbstractDistributionComposite<Double>{
 	private final int location;
 	/** Field*/
 	private final int scale;
-	
-	private boolean discrete;
 
 	public LaplaceComposite(Composite parent) {
 		super(parent);
 		location = createDoubleField("Location parameter", 5d, -Double.MAX_VALUE, Double.MAX_VALUE);
 		scale = createDoubleField("Scale parameter", 0.8d, 0d, Double.MAX_VALUE);
+		setResult(createResult());
 	}
 	
 	@Override
@@ -35,8 +34,7 @@ public class LaplaceComposite extends AbstractDistributionComposite<Double>{
 		}
 		
 		double[] minmax = getMinimumMaximum(param1, param2);
-		return new ContinuousDistribution(minmax[0], minmax[1], discrete,
-										  new LaplaceDistribution(param1, param2));
+		return new ContinuousDistribution(minmax[0], minmax[1], new LaplaceDistribution(param1, param2));
 	}
 
 	/**
@@ -51,14 +49,4 @@ public class LaplaceComposite extends AbstractDistributionComposite<Double>{
 		double x1 = location - (x2 - location); 
 		return new double[]{x1, x2};	
 	}
-	
-	/**
-	 * Sets the discrete flag if distribution should be handled and shown as one
-	 * @param isDiscrete
-	 */
-	public void setDiscrete(boolean isDiscrete) {
-		discrete = isDiscrete;
-		setResult(createResult());
-	}
-
 }

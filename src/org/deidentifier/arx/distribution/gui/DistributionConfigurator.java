@@ -130,45 +130,25 @@ public class DistributionConfigurator{
 		case 3:
 			return new PascalComposite(config);
 		case 4:
-			NormalComposite norm = new NormalComposite(config);
-			norm.setDiscrete(true);
-			return norm;
+			return new DiscreteNormalComposite(config);
 		case 5:
-			CauchyComposite cauchy = new CauchyComposite(config);
-			cauchy.setDiscrete(true);
-			return cauchy;
+			return new DiscreteCauchyComposite(config);
 		case 6:
-			ChiSquaredComposite chi = new ChiSquaredComposite(config);
-			chi.setDiscrete(true);
-			return chi;
+			return new DiscreteChiSquaredComposite(config);
 		case 7:
-			ExponentialComposite exp = new ExponentialComposite(config);
-			exp.setDiscrete(true);
-			return exp;
+			return new DiscreteExponentialComposite(config);
 		case 8:
-			LaplaceComposite laplace = new LaplaceComposite(config);
-			laplace.setDiscrete(true);
-			return laplace;
+			return new DiscreteLaplaceComposite(config);
 		case 9:
-			NormalComposite normC = new NormalComposite(config);
-			normC.setDiscrete(false);
-			return normC;
+			return new NormalComposite(config);
 		case 10:
-			CauchyComposite cauchyC = new CauchyComposite(config);
-			cauchyC.setDiscrete(false);
-			return cauchyC;
+			return new CauchyComposite(config);
 		case 11:
-			ChiSquaredComposite chiC = new ChiSquaredComposite(config);
-			chiC.setDiscrete(false);
-			return chiC;
+			return new ChiSquaredComposite(config);
 		case 12:
-			ExponentialComposite expC = new ExponentialComposite(config);
-			expC.setDiscrete(false);
-			return expC;
+			return new ExponentialComposite(config);
 		case 13:
-			LaplaceComposite laplaceC = new LaplaceComposite(config);
-			laplaceC.setDiscrete(false);
-			return laplaceC;
+			return new LaplaceComposite(config);
 		default:
 			return null;
 		}

@@ -1,5 +1,7 @@
 package org.deidentifier.arx.distribution.gui;
 
+import helper.classes.WrappedRealDistribution;
+
 import org.apache.commons.math3.distribution.CauchyDistribution;
 import org.deidentifier.arx.distribution.model.AbstractDistribution;
 import org.deidentifier.arx.distribution.model.ContinuousDistribution;
@@ -13,12 +15,11 @@ public class CauchyComposite extends AbstractDistributionComposite<Double>{
 	/** Field*/
 	private final int scale;
 	
-	private boolean discrete;
-	
 	public CauchyComposite(Composite parent) {
 		super(parent);
 		median = createDoubleField("Location parameter", 5d, -Double.MAX_VALUE, Double.MAX_VALUE);
 		scale = createDoubleField("Scale parameter", 0.5d, 0d, Double.MAX_VALUE);
+		setResult(createResult());
 	}
 	
 	@Override
@@ -36,8 +37,7 @@ public class CauchyComposite extends AbstractDistributionComposite<Double>{
 		}
 		
 		double[] minmax = getMinimumMaximum(param1, param2);
-		return new ContinuousDistribution(minmax[0], minmax[1], discrete,
-										  new CauchyDistribution(param1, param2));
+		return new ContinuousDistribution(minmax[0], minmax[1], new CauchyDistribution(param1, param2));
 	}
 
 	/**
@@ -52,14 +52,5 @@ public class CauchyComposite extends AbstractDistributionComposite<Double>{
 		double x1 = median - (x2 - median); 
 		return new double[]{x1, x2};
 		
-	}
-	
-	/**
-	 * Sets the discrete flag if distribution should be handled and shown as one
-	 * @param isDiscrete
-	 */
-	public void setDiscrete(boolean isDiscrete) {
-		discrete = isDiscrete;
-		setResult(createResult());
 	}
 }

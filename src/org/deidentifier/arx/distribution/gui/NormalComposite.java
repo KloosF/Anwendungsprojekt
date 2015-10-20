@@ -11,13 +11,12 @@ public class NormalComposite extends AbstractDistributionComposite<Double>{
 	private final int mean;
 	/** Field*/
 	private final int stdDev;
-	
-	private boolean discrete;
 
 	public NormalComposite(Composite parent) {
 		super(parent);
 		mean = createDoubleField("Mean", 5d, -Double.MAX_VALUE, Double.MAX_VALUE);
 		stdDev = createDoubleField("Standard deviation", 0.8d, 0d, Double.MAX_VALUE);
+		setResult(createResult());
 	}
 	
 	@Override
@@ -35,8 +34,7 @@ public class NormalComposite extends AbstractDistributionComposite<Double>{
 		}
 		
 		double[] minmax = getMinimumMaximum(param1, param2);
-		return new ContinuousDistribution(minmax[0], minmax[1], discrete,
-										  new NormalDistribution(param1, param2));
+		return new ContinuousDistribution(minmax[0], minmax[1], new NormalDistribution(param1, param2));
 	}
 
 	/**
@@ -50,14 +48,5 @@ public class NormalComposite extends AbstractDistributionComposite<Double>{
 		double x2 = getXWhereYLessThanOrEqualTo(distribution, mean, 0.0001d);
 		double x1 = mean - (x2 - mean); 
 		return new double[]{x1, x2};	
-	}
-	
-	/**
-	 * Sets the discrete flag if distribution should be handled and shown as one
-	 * @param isDiscrete
-	 */
-	public void setDiscrete(boolean isDiscrete) {
-		discrete = isDiscrete;
-		setResult(createResult());
 	}
 }
