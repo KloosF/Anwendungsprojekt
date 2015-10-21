@@ -2,6 +2,8 @@ package helper.classes;
 
 import org.apache.commons.math3.distribution.AbstractIntegerDistribution;
 import org.apache.commons.math3.distribution.AbstractRealDistribution;
+import org.apache.commons.math3.distribution.ChiSquaredDistribution;
+import org.apache.commons.math3.distribution.ExponentialDistribution;
 
 public class WrappedRealDistribution extends AbstractIntegerDistribution {
 
@@ -47,6 +49,8 @@ public class WrappedRealDistribution extends AbstractIntegerDistribution {
 
     @Override
     public double probability(int arg0) {
-        return this.distribution.density(arg0);
+    		System.out.println("density: " + this.distribution.density(arg0));
+        	System.out.println("cumulative density: " + (this.distribution.cumulativeProbability(arg0 + 0.5) - this.distribution.cumulativeProbability(arg0 - 0.5 + Double.MIN_VALUE)));
+            return (this.distribution.cumulativeProbability(arg0 + 0.5) - this.distribution.cumulativeProbability(arg0 - 0.5 + Double.MIN_VALUE));
     }
 } 
