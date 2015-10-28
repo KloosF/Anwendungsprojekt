@@ -20,6 +20,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 
 public abstract class AbstractDistributionComposite<T>{
@@ -201,7 +202,7 @@ public abstract class AbstractDistributionComposite<T>{
 	}
 
 	/**
-	 * Adds a listener
+	 * Adds a selection listener
 	 * @param e
 	 * @return
 	 */
@@ -210,7 +211,7 @@ public abstract class AbstractDistributionComposite<T>{
 	}
 
 	/**
-	 * Removes a listener
+	 * Removes a selection listener
 	 * @param e
 	 * @return
 	 */

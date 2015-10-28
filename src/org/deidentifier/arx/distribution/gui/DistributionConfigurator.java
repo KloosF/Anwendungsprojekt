@@ -1,5 +1,10 @@
 package org.deidentifier.arx.distribution.gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -9,8 +14,10 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 
 public class DistributionConfigurator{
 
@@ -23,6 +30,11 @@ public class DistributionConfigurator{
 	/** Field */
 	private final DistributionPlot plot;
 	
+	/** Field */
+	private AbstractDistributionComposite<?> composite = null;
+	
+	boolean resized = false;
+	
 	/**
 	 * Creates a new instance
 	 * @param parent
@@ -33,6 +45,8 @@ public class DistributionConfigurator{
 		GridLayout grid = new GridLayout();
 		grid.numColumns = 2;
 		root.setLayout(grid);
+		
+		addResizeListener(root, composite);
 		
 		Label comboLabel = new Label(root, SWT.NONE);
 		comboLabel.setText("Select distribution");
@@ -71,7 +85,7 @@ public class DistributionConfigurator{
 					for (Control c : config.getChildren()) {
 						c.dispose();
 					}
-					AbstractDistributionComposite<?> composite = selectComposite(index);
+					composite = selectComposite(index);
 					
 					if (composite != null) {
 						listenForChanges(composite);
@@ -152,5 +166,26 @@ public class DistributionConfigurator{
 		default:
 			return null;
 		}
+	}
+	
+	private void addResizeListener(Composite root, final AbstractDistributionComposite<?> composite) {
+		root.addListener(SWT.Resize, new Listener() {
+			
+			@Override
+			public void handleEvent(Event event) {
+				resized = true;
+			}
+		});
+		
+		root.addListener(SWT.MouseUp, new Listener() {
+			
+			@Override
+			public void handleEvent(Event event) {
+				if (resized) {
+					update(composite);
+					resized = false;
+				}
+			}
+		});
 	}
 }

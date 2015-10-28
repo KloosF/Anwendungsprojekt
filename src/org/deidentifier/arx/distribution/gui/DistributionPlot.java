@@ -5,11 +5,15 @@ import org.deidentifier.arx.distribution.model.ContinuousDistribution;
 import org.deidentifier.arx.distribution.model.DiscreteDistribution;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.swtchart.Chart;
 import org.swtchart.ISeries;
 import org.swtchart.Range;
+import org.swtchart.ILineSeries.PlotSymbolType;
 import org.swtchart.ISeries.SeriesType;
 import org.swtchart.ISeriesSet;
+import org.swtchart.internal.series.LineSeries;
 
 public class DistributionPlot{
 	
@@ -47,6 +51,7 @@ public class DistributionPlot{
 		ISeriesSet seriesSet = chart.getSeriesSet();
 		ISeries series = seriesSet.createSeries(SeriesType.LINE, "values");
 		double[] xSeries = getXSeries(result);
+		((LineSeries) series).setSymbolType(PlotSymbolType.NONE);
 		series.setXSeries(xSeries);
 		series.setYSeries(getYSeries(xSeries, result));
 		chart.getAxisSet().adjustRange();
