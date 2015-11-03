@@ -13,6 +13,7 @@ import org.swtchart.Range;
 import org.swtchart.ILineSeries.PlotSymbolType;
 import org.swtchart.ISeries.SeriesType;
 import org.swtchart.ISeriesSet;
+import org.swtchart.internal.series.BarSeries;
 import org.swtchart.internal.series.LineSeries;
 
 public class DistributionPlot{
@@ -55,6 +56,11 @@ public class DistributionPlot{
 		series.setXSeries(xSeries);
 		series.setYSeries(getYSeries(xSeries, result));
 		chart.getAxisSet().adjustRange();
+		
+		if (result.getLimitY() != 0) {
+			chart.getAxisSet().getYAxis(0).setRange(new Range(0, result.getLimitY()));
+		}
+		
 		chart.getLegend().setVisible(false);
 		chart.redraw();
 	}
@@ -93,7 +99,8 @@ public class DistributionPlot{
 	private double[] getXSeries(ContinuousDistribution result) {
 
 		// TODO: Update when size of the chart changes
-		int width = chart.getBounds().width;
+		System.out.println(chart.getParent().getBounds().width);
+		int width = chart.getParent().getBounds().width;
 		double delta = (result.getMaximum() - result.getMinimum()) / (double) width;
 		double[] array = new double[width + 1];
 		for (int i = 0; i <= width; i++) {
@@ -110,8 +117,6 @@ public class DistributionPlot{
 		for (int i = 0; i < xSeries.length; i++) {
 			array[i] = result.getValue(xSeries[i]);
 		}
-		System.out.println("Y0: " + array[1]);
-		System.out.println("Y10: " + array[2]);
 		return array;
 	}
 }

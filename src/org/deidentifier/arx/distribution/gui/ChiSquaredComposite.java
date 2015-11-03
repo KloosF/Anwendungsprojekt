@@ -30,7 +30,7 @@ public class ChiSquaredComposite extends AbstractDistributionComposite<Double>{
 			return new ContinuousDistribution(minmax[0], minmax[1], new ChiSquaredDistribution(param1));
 		}
 		else {
-			return new ContinuousDistribution(minmax[0], minmax[1], new ChiSquaredDistribution(param1));
+			return new ContinuousDistribution(0.00001, minmax[1], 1, new ChiSquaredDistribution(param1));
 		}
 	}
 

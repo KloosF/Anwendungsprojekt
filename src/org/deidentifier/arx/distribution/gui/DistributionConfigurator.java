@@ -2,18 +2,20 @@ package org.deidentifier.arx.distribution.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Timer;
-import java.util.TimerTask;
+
+import javax.swing.Timer;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
@@ -45,8 +47,6 @@ public class DistributionConfigurator{
 		GridLayout grid = new GridLayout();
 		grid.numColumns = 2;
 		root.setLayout(grid);
-		
-		addResizeListener(root, composite);
 		
 		Label comboLabel = new Label(root, SWT.NONE);
 		comboLabel.setText("Select distribution");
@@ -117,7 +117,7 @@ public class DistributionConfigurator{
 		} else {
 			plot.update(composite.getResult());
 		}
-		root.layout(true);
+		root.layout(true, true);
 	}
 	
 	/**
@@ -166,26 +166,5 @@ public class DistributionConfigurator{
 		default:
 			return null;
 		}
-	}
-	
-	private void addResizeListener(Composite root, final AbstractDistributionComposite<?> composite) {
-		root.addListener(SWT.Resize, new Listener() {
-			
-			@Override
-			public void handleEvent(Event event) {
-				resized = true;
-			}
-		});
-		
-		root.addListener(SWT.MouseUp, new Listener() {
-			
-			@Override
-			public void handleEvent(Event event) {
-				if (resized) {
-					update(composite);
-					resized = false;
-				}
-			}
-		});
 	}
 }

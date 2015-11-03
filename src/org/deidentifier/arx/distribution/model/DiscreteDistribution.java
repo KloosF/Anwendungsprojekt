@@ -11,6 +11,7 @@ public class DiscreteDistribution extends AbstractDistribution<Integer>{
 	
 	public DiscreteDistribution(int min, int max,
 			AbstractIntegerDistribution distribution) {
+		super(0d);
 		this.min = min;
 		this.max = max;
 		this.distribution = distribution;
