@@ -233,7 +233,7 @@ public abstract class AbstractDistributionComposite<T>{
 	 */
 	protected int getXWhereYLessThanOrEqualTo(AbstractIntegerDistribution distribution, int start, double threshold) {
 
-		int end = start + 100000;
+		int end = Integer.MAX_VALUE;
 		int x = start;
 		while (start < end) { 
 			x = (start + end) / 2;
@@ -256,7 +256,7 @@ public abstract class AbstractDistributionComposite<T>{
 	 */
 	protected double getXWhereYLessThanOrEqualTo(AbstractRealDistribution distribution, double start, double threshold) {
 
-		double end = start + 1000000000000d;
+		double end = Double.MAX_VALUE;
 		double x = start;
 		double value = 0d;
 		while (Math.abs(start - end) > threshold) {

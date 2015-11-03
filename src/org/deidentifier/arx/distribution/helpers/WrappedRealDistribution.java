@@ -1,4 +1,4 @@
-package helper.classes;
+package org.deidentifier.arx.distribution.helpers;
 
 import org.apache.commons.math3.distribution.AbstractIntegerDistribution;
 import org.apache.commons.math3.distribution.AbstractRealDistribution;

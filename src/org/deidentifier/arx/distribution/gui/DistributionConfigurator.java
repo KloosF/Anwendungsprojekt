@@ -26,8 +26,6 @@ public class DistributionConfigurator{
 	/** Field */
 	private AbstractDistributionComposite<?> composite = null;
 	
-	boolean resized = false;
-	
 	/**
 	 * Creates a new instance
 	 * @param parent

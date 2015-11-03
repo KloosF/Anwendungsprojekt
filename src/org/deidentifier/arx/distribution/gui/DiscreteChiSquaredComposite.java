@@ -1,8 +1,7 @@
 package org.deidentifier.arx.distribution.gui;
 
-import helper.classes.WrappedRealDistribution;
-
 import org.apache.commons.math3.distribution.ChiSquaredDistribution;
+import org.deidentifier.arx.distribution.helpers.WrappedRealDistribution;
 import org.deidentifier.arx.distribution.model.AbstractDistribution;
 import org.deidentifier.arx.distribution.model.DiscreteDistribution;
 import org.eclipse.swt.widgets.Composite;
