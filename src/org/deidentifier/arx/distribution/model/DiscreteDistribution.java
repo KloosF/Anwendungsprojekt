@@ -1,7 +1,6 @@
 package org.deidentifier.arx.distribution.model;
 
 import org.apache.commons.math3.distribution.AbstractIntegerDistribution;
-import org.apache.commons.math3.distribution.NormalDistribution;
 
 public class DiscreteDistribution extends AbstractDistribution<Integer>{
 

@@ -2,8 +2,6 @@ package helper.classes;
 
 import org.apache.commons.math3.distribution.AbstractIntegerDistribution;
 import org.apache.commons.math3.distribution.AbstractRealDistribution;
-import org.apache.commons.math3.distribution.ChiSquaredDistribution;
-import org.apache.commons.math3.distribution.ExponentialDistribution;
 
 public class WrappedRealDistribution extends AbstractIntegerDistribution {
 

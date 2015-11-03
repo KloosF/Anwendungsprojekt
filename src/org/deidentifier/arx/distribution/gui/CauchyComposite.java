@@ -1,11 +1,8 @@
 package org.deidentifier.arx.distribution.gui;
 
-import helper.classes.WrappedRealDistribution;
-
 import org.apache.commons.math3.distribution.CauchyDistribution;
 import org.deidentifier.arx.distribution.model.AbstractDistribution;
 import org.deidentifier.arx.distribution.model.ContinuousDistribution;
-import org.deidentifier.arx.distribution.model.DiscreteDistribution;
 import org.eclipse.swt.widgets.Composite;
 
 public class CauchyComposite extends AbstractDistributionComposite<Double>{

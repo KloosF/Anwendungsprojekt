@@ -20,7 +20,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 
 public abstract class AbstractDistributionComposite<T>{
@@ -236,7 +235,7 @@ public abstract class AbstractDistributionComposite<T>{
 
 		int end = start + 100000;
 		int x = start;
-		while (start < end) { // TODO
+		while (start < end) { 
 			x = (start + end) / 2;
 			double value = distribution.probability(x);
 			if (value < threshold) {
@@ -260,7 +259,7 @@ public abstract class AbstractDistributionComposite<T>{
 		double end = start + 1000000000000d;
 		double x = start;
 		double value = 0d;
-		while (Math.abs(start - end) > threshold) { // TODO
+		while (Math.abs(start - end) > threshold) {
 
 			x = (start + end) / 2d;
 			value = distribution.density(x);
