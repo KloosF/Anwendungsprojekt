@@ -105,8 +105,6 @@ public class DistributionPlot{
 	}
 	
 	private double[] getYSeries(double[] xSeries, ContinuousDistribution result) {
-
-		// TODO: Update when size of the chart changes
 		
 		double[] array = new double[xSeries.length];
 		for (int i = 0; i < xSeries.length; i++) {
