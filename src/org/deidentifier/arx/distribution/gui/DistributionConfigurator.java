@@ -61,8 +61,7 @@ public class DistributionConfigurator{
 				"Cauchy distribution (continuous)",
 				"Chi-squared distribution (continuous)",
 				"Exponential distribution (continuous)",
-				"Laplace distribution (continuous)"
-				
+				"Laplace distribution (continuous)"		
 		});
 		combo.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
 		
@@ -87,6 +86,13 @@ public class DistributionConfigurator{
 
 		this.plot = new DistributionPlot(this.root);
 		this.plot.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
+		
+		//initialize BinomialDistribution when starting the program
+		combo.select(0);
+		composite = selectComposite(0);
+		listenForChanges(composite);
+		update(composite);
+		
 	}
 
 	private void listenForChanges(final AbstractDistributionComposite<?> composite) {

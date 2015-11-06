@@ -12,7 +12,7 @@ public class GeometricComposite extends AbstractDistributionComposite<Integer>{
 
 	public GeometricComposite(Composite parent) {
 		super(parent);
-		probability = createDoubleField("Probability", 0.5d, Double.MIN_VALUE, Double.MAX_VALUE);
+		probability = createDoubleField("Probability", 0.5d, 0d, 1d);
 		setResult(createResult());
 	}
 	

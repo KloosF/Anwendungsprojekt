@@ -53,6 +53,9 @@ public class DistributionPlot{
 		series.setXSeries(xSeries);
 		series.setYSeries(getYSeries(xSeries, result));
 		chart.getAxisSet().adjustRange();
+		chart.getTitle().setText("Probability density function");
+		chart.getAxisSet().getYAxis(0).getTitle().setText("P(X)");
+		chart.getAxisSet().getXAxis(0).getTitle().setText("X");
 		
 		if (result.getLimitY() != 0) {
 			chart.getAxisSet().getYAxis(0).setRange(new Range(0, result.getLimitY()));
@@ -71,6 +74,9 @@ public class DistributionPlot{
 		series.setYSeries(getYSeries(xSeries, result));
 		chart.getAxisSet().adjustRange();
 		chart.getLegend().setVisible(false);
+		chart.getTitle().setText("Probability mass function");
+		chart.getAxisSet().getYAxis(0).getTitle().setText("P(X=x)");
+		chart.getAxisSet().getXAxis(0).getTitle().setText("X");
 		chart.redraw();
 	}
 
