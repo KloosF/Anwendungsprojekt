@@ -47,6 +47,6 @@ public class WrappedRealDistribution extends AbstractIntegerDistribution {
 
     @Override
     public double probability(int arg0) {
-            return (this.distribution.cumulativeProbability(arg0 + 1) - this.distribution.cumulativeProbability(arg0));
+            return (this.distribution.cumulativeProbability(arg0 + 1 - Double.MIN_VALUE) - this.distribution.cumulativeProbability(arg0 - Double.MIN_VALUE));
     }
 } 
